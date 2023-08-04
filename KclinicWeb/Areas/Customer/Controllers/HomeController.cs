@@ -1,12 +1,12 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
+﻿using Kclinic.DataAccess.Repository.IRepository;
+using Kclinic.Models;
+using Kclinic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace BulkyBookWeb.Controllers;
+namespace KclinicWeb.Controllers;
 [Area("Customer")]
 public class HomeController : Controller
 {
@@ -21,9 +21,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType");
+        IEnumerable<Blog> blogList = _unitOfWork.Blog.GetAll(includeProperties:"Category,CoverType");
 
-        return View(productList);
+        return View(blogList);
     }
 
     public IActionResult Details(int id)
@@ -31,7 +31,7 @@ public class HomeController : Controller
         ShoppingCart cartObj = new()
         {
             Count=1,
-            Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,CoverType"),
+            Blog = _unitOfWork.Blog.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,CoverType"),
         };
 
         return View(cartObj);

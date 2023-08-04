@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyBook.DataAccess.Repository.IRepository
+namespace Kclinic.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
         ICategoryRepository Category {  get; }
         ICoverTypeRepository CoverType {  get; }
-        IProductRepository Product { get; }
+        IBlogRepository Blog { get; }
 
         void Save();
     }
