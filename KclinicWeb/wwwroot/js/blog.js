@@ -7,12 +7,10 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url":"/Admin/Product/GetAll"
+            "url":"/Admin/Blog/GetAll"
         },
         "columns": [
             { "data": "title", "width": "15%" },
-            { "data": "isbn", "width": "15%" },
-            { "data": "price", "width": "15%" },
             { "data": "author", "width": "15%" },
             { "data": "category.name", "width": "15%" },
             {
@@ -20,9 +18,9 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                         <div class="w-75 btn-group" role="group">
-                        <a href="/Admin/Product/Upsert?id=${data}"
+                        <a href="/Admin/Blog/Upsert?id=${data}"
                         class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                        <a onClick=Delete('/Admin/Product/Delete/${data}')
+                        <a onClick=Delete('/Admin/Blog/Delete/${data}')
                         class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
 					</div>
                         `

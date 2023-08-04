@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Kclinic.DataAccess.Repository.IRepository
 {
-    public interface ICoverTypeRepository : IRepository<CoverType>
+    public interface IBlogRepository : IRepository<Blog>
     {
-        void Update(CoverType obj);
+        void Update(Blog obj);
     }
 }

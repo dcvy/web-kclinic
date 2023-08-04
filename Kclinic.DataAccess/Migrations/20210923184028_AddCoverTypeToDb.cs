@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BulkyBook.DataAccess.Migrations
+namespace Kclinic.DataAccess.Migrations
 {
     public partial class AddCoverTypeToDb : Migration
     {

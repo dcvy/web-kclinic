@@ -1,7 +1,7 @@
-﻿using BulkyBook.DataAccess;
-using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
+﻿using Kclinic.DataAccess;
+using Kclinic.DataAccess.Repository.IRepository;
+using Kclinic.Models;
+using Kclinic.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +11,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace BulkyBookWeb.Controllers;
+namespace KclinicWeb.Controllers;
 [Area("Admin")]
-public class ProductController : Controller
+public class BlogController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IWebHostEnvironment _hostEnvironment;
 
 
-    public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+    public BlogController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
     {
         _unitOfWork = unitOfWork;
         _hostEnvironment = hostEnvironment;
@@ -33,9 +33,9 @@ public class ProductController : Controller
     //GET
     public IActionResult Upsert(int? id)
     {
-        ProductVM productVM = new()
+        BlogVM blogVM = new()
         {
-            Product = new(),
+            Blog = new(),
             CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
             {
                 Text = i.Name,
@@ -50,17 +50,17 @@ public class ProductController : Controller
 
         if (id == null || id == 0)
         {
-            //create product
+            //create blog
             //ViewBag.CategoryList = CategoryList;
             //ViewData["CoverTypeList"] = CoverTypeList;
-            return View(productVM);
+            return View(blogVM);
         }
         else
         {
-            productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
-            return View(productVM);
+            blogVM.Blog = _unitOfWork.Blog.GetFirstOrDefault(u => u.Id == id);
+            return View(blogVM);
 
-            //update product
+            //update blog
         }
 
 
@@ -69,7 +69,7 @@ public class ProductController : Controller
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Upsert(ProductVM obj, IFormFile? file)
+    public IActionResult Upsert(BlogVM obj, IFormFile? file)
     {
 
         if (ModelState.IsValid)
@@ -78,12 +78,12 @@ public class ProductController : Controller
             if (file != null)
             {
                 string fileName = Guid.NewGuid().ToString();
-                var uploads = Path.Combine(wwwRootPath, @"images\products");
+                var uploads = Path.Combine(wwwRootPath, @"images\blogs");
                 var extension = Path.GetExtension(file.FileName);
 
-                if (obj.Product.ImageUrl != null)
+                if (obj.Blog.ImageUrl != null)
                 {
-                    var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
+                    var oldImagePath = Path.Combine(wwwRootPath, obj.Blog.ImageUrl.TrimStart('\\'));
                     if (System.IO.File.Exists(oldImagePath))
                     {
                         System.IO.File.Delete(oldImagePath);
@@ -94,19 +94,19 @@ public class ProductController : Controller
                 {
                     file.CopyTo(fileStreams);
                 }
-                obj.Product.ImageUrl = @"\images\products\" + fileName + extension;
+                obj.Blog.ImageUrl = @"\images\blogs\" + fileName + extension;
 
             }
-            if (obj.Product.Id == 0)
+            if (obj.Blog.Id == 0)
             {
-                _unitOfWork.Product.Add(obj.Product);
+                _unitOfWork.Blog.Add(obj.Blog);
             }
             else
             {
-                _unitOfWork.Product.Update(obj.Product);
+                _unitOfWork.Blog.Update(obj.Blog);
             }
             _unitOfWork.Save();
-            TempData["success"] = "Product created successfully";
+            TempData["success"] = "Blog created successfully";
             return RedirectToAction("Index");
         }
         return View(obj);
@@ -118,15 +118,15 @@ public class ProductController : Controller
     [HttpGet]
     public IActionResult GetAll()
     {
-        var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
-        return Json(new { data = productList });
+        var blogList = _unitOfWork.Blog.GetAll(includeProperties: "Category,CoverType");
+        return Json(new { data = blogList });
     }
 
     //POST
     [HttpDelete]
     public IActionResult Delete(int? id)
     {
-        var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+        var obj = _unitOfWork.Blog.GetFirstOrDefault(u => u.Id == id);
         if (obj == null)
         {
             return Json(new { success = false, message = "Error while deleting" });
@@ -138,7 +138,7 @@ public class ProductController : Controller
             System.IO.File.Delete(oldImagePath);
         }
 
-        _unitOfWork.Product.Remove(obj);
+        _unitOfWork.Blog.Remove(obj);
         _unitOfWork.Save();
         return Json(new { success = true, message = "Delete Successful" });
 

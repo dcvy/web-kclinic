@@ -1,11 +1,11 @@
-﻿using BulkyBook.DataAccess;
-using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
+﻿using Kclinic.DataAccess;
+using Kclinic.DataAccess.Repository.IRepository;
+using Kclinic.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BulkyBookWeb.Controllers;
+namespace KclinicWeb.Controllers;
 [Area("Admin")]
 public class CategoryController : Controller
 {

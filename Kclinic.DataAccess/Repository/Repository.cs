@@ -1,4 +1,4 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
+﻿using Kclinic.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyBook.DataAccess.Repository
+namespace Kclinic.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -17,7 +17,7 @@ namespace BulkyBook.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db= db;
-            //_db.Products.Include(u => u.Category).Include(u=>u.CoverType);
+            //_db.Blogs.Include(u => u.Category).Include(u=>u.CoverType);
             this.dbSet= _db.Set<T>();
         }
         public void Add(T entity)
