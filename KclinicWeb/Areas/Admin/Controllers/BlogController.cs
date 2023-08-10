@@ -2,6 +2,8 @@
 using Kclinic.DataAccess.Repository.IRepository;
 using Kclinic.Models;
 using Kclinic.Models.ViewModels;
+using Kclinic.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +15,7 @@ using System.Linq;
 
 namespace KclinicWeb.Controllers;
 [Area("Admin")]
+[Authorize(Roles = SD.Role_Admin)]
 public class BlogController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;

@@ -1,12 +1,15 @@
 ﻿using Kclinic.DataAccess;
 using Kclinic.DataAccess.Repository.IRepository;
 using Kclinic.Models;
+using Kclinic.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace KclinicWeb.Controllers;
 [Area("Admin")]
+[Authorize(Roles = SD.Role_Admin)]
 public class CategoryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
