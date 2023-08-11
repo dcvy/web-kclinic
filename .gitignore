@@ -363,3 +363,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /KclinicWeb/wwwroot/images/blogs
+/KclinicWeb/wwwroot/images/imgs
