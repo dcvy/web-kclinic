@@ -1,6 +1,5 @@
 ﻿
 using Kclinic.Models;
-using Kclinic.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

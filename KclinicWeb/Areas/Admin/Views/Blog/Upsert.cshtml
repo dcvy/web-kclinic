@@ -58,6 +58,7 @@
 		}
 </style>
 <script src="https://cdn.tiny.cloud/1/ruzxaoky8x0gdv9d1x8glgzib4vcvu11kojsihyfk0hocn5t/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<div class="container">
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
 	<input asp-for="Blog.Id" hidden />
 	<input asp-for="Blog.ImageUrl" hidden />
@@ -127,14 +128,8 @@
 		</div>
 	</div>
 
-	
-
-
-
-
-
 </form>
-
+</div>
 @section Scripts{
 	@{
 	<partial name="_ValidationScriptsPartial" />

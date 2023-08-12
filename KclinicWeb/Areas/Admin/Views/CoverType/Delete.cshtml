@@ -1,5 +1,5 @@
 ﻿@model CoverType
-
+<div class="container">
 <form method="post" asp-action="Delete">
 	<input asp-for="Id" hidden />
 	<div class="border p-3 mt-4">
@@ -19,7 +19,7 @@
 		</a>
 	</div>
 </form>
-
+</div>
 @section Scripts{
 	@{
 		<partial name="_ValidationScriptsPartial" />
