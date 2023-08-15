@@ -12,7 +12,6 @@
     <meta name="keywords" content="">
     <meta name="author" content="Tooplate">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <link rel="stylesheet" href="~/asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/asset/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/asset/css/animate.css">
@@ -108,24 +107,17 @@
             <div class="row">
 
                 <div class="col-md-2 col-sm-3">
-                    <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="~/images/logo/Kcl.png" alt="logo" /></a>
                 </div>
 
                 <div class="col-md-10 col-sm-9">
-                    <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>
+                    <span class="phone-icon"><i class="fa fa-phone"></i> 0932-070-463</span>
                     <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 8:00 AM - 5:30 PM (Mon-Fri)</span>
                     <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">Kcl@company.com</a></span>
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <span><i class="fa fa-envelope-o"></i> <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a></span>
-                        <span>
-                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                <button id="logout" type="submit" class="nav-link btn btn-link">Logout</button>
-                            </form>
-                        </span>
                     }else{
                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a></span>
-                        <span class="email-icon"><i class="fa fa-envelope-o"></i> <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></span>
                     }
                     
                     
@@ -148,12 +140,12 @@
                 </button>
 
                 <!-- lOGO TEXT HERE -->
-                <img src="~/images/logo/Kcliniclogo.png" alt="logo" />
+                <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="~/images/logo/Kcl.png" alt="logo" /></a>
             </div>
 
             <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav ">
                     <li><a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
                     @if (User.IsInRole(SD.Role_Admin))
                     {
@@ -163,15 +155,40 @@
                                 <p><a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></p>
                                 <p><a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a></p>
                                 <p><a class="dropdown-item" asp-area="Admin" asp-controller="Blog" asp-action="Index">Blog</a></p>
+                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></p>
                                 <div class="dropdown-divider"></div>
                             </div>
                         </li>
                     }
-                    <li><a href="#about" class="smoothScroll">About Us</a></li>
-                    <li><a href="#team" class="smoothScroll">Doctors</a></li>
-                    <li><a href="#news" class="smoothScroll">News</a></li>
-                    <li><a href="#google-map" class="smoothScroll">Contact</a></li>
-                    <li class="appointment-btn"><a href="#appointment">Make an appointment</a></li>
+                    @{
+                        // Get the current page's path
+                        var currentPagePath = Context.Request.Path;
+                        // Define the path for the home page
+                        var homePagePath = "/";
+                    }
+
+                    @if (currentPagePath == homePagePath)
+                    {
+                        <li><a href="#about" class="smoothScroll">Giới Thiệu</a></li>
+                        <li><a href="#team" class="smoothScroll">Sản Phẩm</a></li>
+                        <li><a href="#news" class="smoothScroll">Tin Tức</a></li>
+                        <li><a href="#google-map" class="smoothScroll">Địa Chỉ</a></li>
+                        <li class="appointment-btn"><a href="#appointment">Đặt hẹn</a></li>
+                    }
+
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="appointment-btn">
+                            <form id="logoutForm" class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button id="logout" type="submit" class="nav-link btn btn-link">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="appointment-btn"><a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                    }
                 </ul>
 
             </div>
@@ -193,48 +210,45 @@
 
                 <div class="col-md-4 col-sm-4">
                     <div class="footer-thumb">
-                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
-                        <p>Fusce at libero iaculis, venenatis augue quis, pharetra lorem. Curabitur ut dolor eu elit consequat ultricies.</p>
+                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Liên Hệ Chúng tôi</h4>
+                        <p>
+                            TRỤ SỞ CHÍNH TẠI TP ĐÀ NẴNG
+
+                            160 Lê Đình Lý, Phường Vĩnh Trung, Quân Thanh Khê, Thành phố Đà Nẵng
+                        </p>
+                        <p>
+                            VĂN PHÒNG ĐẠI DIỆN TẠI TP HỒ CHÍ MINH
+
+                            79/52 Tân Tháng, Phường Sơn Kỳ, Quận Tân Phú, TP. Hồ Chí Minh 
+                        </p>
+                        <p>
+                            VĂN PHÒNG ĐẠI DIỆN TAI TP HÀ NỘI
+
+                            Số 3, ngách 28,32, ngõ 28 Đường Tăng Thiết Giáp, Phương Cổ Nhuế 2, Quân Bắc Từ Liêm, TP. Hà Nội
+                        </p>
 
                         <div class="contact-info">
-                            <p><i class="fa fa-phone"></i> 010-070-0170</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></p>
+                            <p><i class="fa fa-phone"></i>  0932 070 463 - 0903 555 753</p>
+                            <p><i class="fa fa-envelope-o"></i>Email: kclvn.solution@gmail.com</p>
+                            <p><i class="fa fa-globe"></i><a href="https://kclgroup.vn/">Website:www.kclgroup.vn</a></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-4">
                     <div class="footer-thumb">
-                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Latest News</h4>
-                        <div class="latest-stories">
-                            <div class="stories-image">
-                                <a href="#"><img src="\images\imgs\news-image.jpg" class="img-responsive" alt=""></a>
-                            </div>
-                            <div class="stories-info">
-                                <a href="#"><h5>Amazing Technology</h5></a>
-                                <span>March 08, 2018</span>
-                            </div>
-                        </div>
-
-                        <div class="latest-stories">
-                            <div class="stories-image">
-                                <a href="#"><img src="\images\imgs\news-image.jpg" class="img-responsive" alt=""></a>
-                            </div>
-                            <div class="stories-info">
-                                <a href="#"><h5>New Healing Process</h5></a>
-                                <span>February 20, 2018</span>
-                            </div>
-                        </div>
+                        <h4 class="wow fadeInUp" data-wow-delay="0.4s"> HỖ TRỢ KHÁCH HÀNG</h4>
+                        <p>Bảo hành ứng dụng trong vòng 12 tháng</p>
+                        <p>Chính sách bảo mật thông tin</p>
+                        <p>Miễn phí lắp đặt phần mềm</p>
                     </div>
                 </div>
-
                 <div class="col-md-4 col-sm-4">
                     <div class="footer-thumb">
                         <div class="opening-hours">
-                            <h4 class="wow fadeInUp" data-wow-delay="0.4s">Opening Hours</h4>
-                            <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
-                            <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
-                            <p>Sunday <span>Closed</span></p>
+                            <h4 class="wow fadeInUp" data-wow-delay="0.4s">Giờ làm việc</h4>
+                            <p>Thứ 2 - Thứ 6 <span>08:00 AM - 5:30 PM</span></p>
+                            <p>Thứ 7 <span>08:00 AM - 12:00 AM</span></p>
                         </div>
 
                         <ul class="social-icon">
@@ -246,23 +260,16 @@
                 </div>
 
                 <div class="col-md-12 col-sm-12 border-top">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="copyright-text">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="copyright-text" style="text-align:center">
                             <p>
-                                Copyright &copy; 2018 Your Company
+                                Copyright &copy; 2023 KCL GROUP
 
-                                | Design: Tooplate
+                                | Design: Như Hoàng - Công Vỹ
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="footer-link">
-                            <a href="#">Laboratory Tests</a>
-                            <a href="#">Departments</a>
-                            <a href="#">Insurance Policy</a>
-                            <a href="#">Careers</a>
-                        </div>
-                    </div>
+                 
                     <div class="col-md-2 col-sm-2 text-align-center">
                         <div class="angle-up-btn">
                             <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
@@ -272,8 +279,9 @@
 
             </div>
         </div>
+        
+       
     </footer>
-
     <!-- SCRIPTS -->
     <script src="~/asset/js/jquery.js"></script>
     <script src="~/asset/js/bootstrap.min.js"></script>
@@ -285,6 +293,7 @@
     <script src="~/asset/js/custom.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="//cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.tiny.cloud/1/n94ifuzvl80pchikopiwgz2esrw8n28dwcywvpejlqrregfp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)

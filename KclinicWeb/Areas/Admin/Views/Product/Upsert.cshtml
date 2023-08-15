@@ -1,114 +1,43 @@
-﻿@model Kclinic.Models.ViewModels.BlogVM
+﻿@model Kclinic.Models.ViewModels.ProductVM
 
-<style>
-	/* For other boilerplate styles, see: https://www.tiny.cloud/docs/tinymce/6/editor-content-css/ */
-	/*
-	* For rendering images inserted using the image plugin.
-	* Includes image captions using the HTML5 figure element.
-	*/
 
-	figure.image {
-		display: inline-block;
-		border: 1px solid gray;
-		margin: 0 2px 0 1px;
-		background: #f5f2f0;
-	}
-
-	figure.align-left {
-		float: left;
-	}
-
-	figure.align-right {
-		float: right;
-	}
-
-	figure.image img {
-		margin: 8px 8px 0 8px;
-	}
-
-	figure.image figcaption {
-		margin: 6px 8px 6px 8px;
-		text-align: center;
-	}
-
-	/*
-	 Alignment using classes rather than inline styles
-	 check out the "formats" option
-	*/
-
-	img.align-left {
-		float: left;
-	}
-
-	img.align-right {
-		float: right;
-	}
-
-	/* Basic styles for Table of Contents plugin (tableofcontents) */
-	.mce-toc {
-		border: 1px solid gray;
-	}
-
-		.mce-toc h2 {
-			margin: 4px;
-		}
-
-		.mce-toc li {
-			list-style-type: none;
-		}
-</style>
-<script src="https://cdn.tiny.cloud/1/ruzxaoky8x0gdv9d1x8glgzib4vcvu11kojsihyfk0hocn5t/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <div class="container">
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
-	<input asp-for="Blog.Id" hidden />
-	<input asp-for="Blog.ImageUrl" hidden />
+	<input asp-for="Product.Id" hidden />
+	<input asp-for="Product.ImageUrl" hidden />
 
 	<div class="row">
 		<div class="col-10">
 			<div class="border p-3 mt-4 row">
 		<div class="col-12 pb-2">
-			<h2 class="text-primary">@(Model.Blog.Id!=0?"Update": "Create")  Blog</h2>
+			<h2 class="text-primary">@(Model.Product.Id!=0?"Update": "Create")  Product</h2>
 			<hr />
 		</div>
 		@*<div asp-validation-summary="All"></div>*@
 		<div class="mb-3">
-			<label asp-for="Blog.Title"></label>
-			<input asp-for="Blog.Title" class="form-control" />
-			<span asp-validation-for="Blog.Title" class="text-danger"></span>
+			<label asp-for="Product.Name"></label>
+			<input asp-for="Product.Name" class="form-control" />
+			<span asp-validation-for="Product.Name" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
-			<label asp-for="Blog.Description"></label>
-			<textarea asp-for="Blog.Description" rows="3" class="form-control" id="open-source-plugins"></textarea>
-			<span asp-validation-for="Blog.Description" class="text-danger"></span>
+			<label asp-for="Product.Description"></label>
+			<textarea asp-for="Product.Description" rows="3" class="form-control" id="open-source-plugins"></textarea>
+			<span asp-validation-for="Product.Description" class="text-danger"></span>
 		</div>
 		<div class="mb-3 col-6">
-			<label asp-for="Blog.Author"></label>
-			<input asp-for="Blog.Author" class="form-control" />
-			<span asp-validation-for="Blog.Author" class="text-danger"></span>
+			<label asp-for="Product.Price"></label>
+			<input asp-for="Product.Price" class="form-control" />
+			<span asp-validation-for="Product.Price" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
-			<label asp-for="Blog.ImageUrl"></label>
+			<label asp-for="Product.ImageUrl"></label>
 			<input type="file" id="uploadBox" name="file" class="form-control" />
 		</div>
 		<br	/>
-		<div class="mb-3 col-md-6">
-			<label asp-for="Blog.CategoryId"></label>
-			<select asp-for="Blog.CategoryId" asp-items="@Model.CategoryList" class="form-select">
-				<option disabled selected>--Select Category--</option>
-			</select>
-			<span asp-validation-for="Blog.CategoryId" class="text-danger"></span>
-		</div>
-
-		<div class="mb-3 col-md-6">
-			<label asp-for="Blog.CoverTypeId"></label>
-			<select asp-for="Blog.CoverTypeId" asp-items="@Model.CoverTypeList" class="form-select">
-				<option disabled selected>--Select CoverType--</option>
-			</select>
-			<span asp-validation-for="Blog.CoverTypeId" class="text-danger"></span>
-		</div>
+		
 		<br /><br />
 		<div class="col-12">
-			@if (Model.Blog.Id != 0)
+			@if (Model.Product.Id != 0)
 			{
 				<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
 			}
@@ -116,7 +45,7 @@
 			{
 				<button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
 			}
-			<a asp-controller="Blog" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			<a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">
 				Back to List
 			</a>
 		</div>
@@ -124,7 +53,7 @@
 	</div>
 		</div>
 		<div class="col-2 pt-4">
-			<img src="@Model.Blog.ImageUrl"
+			<img src="@Model.Product.ImageUrl"
 			width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
 		</div>
 	</div>

@@ -335,9 +335,27 @@ padding-top: 12px;
 padding-bottom: 12px;
 }
 
+.navbar-default .navbar-nav li.appointment-btn form button {
+    background-color: #4CAF50;
+    border-radius: 3px;
+    color: #ffffff;
+    font-weight: 600;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.navbar-default .navbar-nav li.appointment-btn form button {
+    transition: all ease-in-out 0.2s;
+}
+.navbar-default .navbar-nav li.appointment-btn form button:hover {
+  background-color: #FF7F50; 
+  color: white;
+}
 .navbar-default .navbar-nav li.appointment-btn a:hover {
 background: #4267b2;
 color: #ffffff !important;
+}
+.dropdown-item a:hover {
+    background-color: #FF7F50;
 }
 
 .navbar-default .navbar-nav li a {
@@ -349,9 +367,10 @@ padding-left: 20px;
 -webkit-transition: all ease-in-out 0.4s;
 transition: all ease-in-out 0.4s;
 }
-
+.navbar-default .navbar-nav li a :hover{
+}
 .navbar-default .navbar-nav > li a:hover {
-color: #393939 !important;
+    background-color: #4CAF50 !important;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -520,7 +539,7 @@ height: 650px;
 }
 
 .slider .item-first {
-background-image: url(../images/slider1.jpg);
+background-image: url(../images/KclinicSlide1.png);
 }
 
 .slider .item-second {
@@ -537,7 +556,7 @@ background-image: url(../images/slider3.jpg);
 -----------------------------------------*/
 
 #about {
-background: url('../images/about-bg.jpg') no-repeat top center;
+
 background-size: cover;
 padding-top: 150px;
 padding-bottom: 150px;

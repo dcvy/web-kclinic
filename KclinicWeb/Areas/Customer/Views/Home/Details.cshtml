@@ -26,6 +26,7 @@
 
                 // Replace the temporary URL with the correct server URL.
                 description = description.Replace(oldImageUrl, newImageUrl);
+
             }
         }
 
@@ -74,7 +75,17 @@
 </form>
 *@
 
-
+<p class="text-secondary">
+    <style>
+        .blog-images img {
+            max-width: 200px; /* Set the maximum width for the images */
+            height: auto; /* Maintain the aspect ratio */
+        }
+    </style>
+    <div class="blog-images">
+        @Html.Raw(InsertImageUrls(Model.Blog.Description))
+    </div>
+</p>
 
 <!-- NEWS DETAIL -->
 <section id="news-detail" data-stellar-background-ratio="0.5">
@@ -88,7 +99,7 @@
                         <img src="@Model.Blog.ImageUrl" class="img-responsive" alt="" style="max-width: auto; max-height: 533px;">
                     </div>
                     <h3>@Model.Blog.Title</h3>
-                    <p class="text-secondary">@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
+                    <p class="text-secondary" style="max-width" >@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
                     <div class="news-social-share">
                         <h4>Share this article</h4>
                         <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
@@ -109,8 +120,8 @@
                         <h4>Recent Posts</h4>
 
                         <div class="media">
-                            <div class="media-object pull-left">
-                                <a href="#"><img src="\images\imgs\news-image.jpg" class="img-responsive" alt=""></a>
+                            <div class="media-object pull-left" >
+                                <a href="#"><img src="\images\imgs\news-image.jpg" class="img-responsive" alt="" "></a>
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">Introducing a new healing process</a></h4>
@@ -137,12 +148,14 @@
 
                     <div class="news-tags">
                         <h4>Tags</h4>
-                        <li><a href="#">Pregnancy</a></li>
-                        <li><a href="#">Health</a></li>
-                        <li><a href="#">Consultant</a></li>
-                        <li><a href="#">Medical</a></li>
-                        <li><a href="#">Doctors</a></li>
-                        <li><a href="#">Social</a></li>
+                        <ul>
+                            <li><a href="#">Pregnancy</a></li>
+                            <li><a href="#">Health</a></li>
+                            <li><a href="#">Consultant</a></li>
+                            <li><a href="#">Medical</a></li>
+                            <li><a href="#">Doctors</a></li>
+                            <li><a href="#">Social</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

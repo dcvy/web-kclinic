@@ -11,6 +11,7 @@ namespace Kclinic.DataAccess.Repository.IRepository
         ICategoryRepository Category {  get; }
         ICoverTypeRepository CoverType {  get; }
         IBlogRepository Blog { get; }
+        IProductRepository Product { get; }
 
         void Save();
     }
