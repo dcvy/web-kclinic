@@ -21,10 +21,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Blog> blogList = _unitOfWork.Blog.GetAll(includeProperties:"Category,CoverType");
+		var viewModel = new HomeVM
+		{
+			Blogs = _unitOfWork.Blog.GetAll(includeProperties: "Category,CoverType"),
+			Products = _unitOfWork.Product.GetAll()
 
-        return View(blogList);
-    }
+	    };
+
+		return View(viewModel);
+	}
 
     public IActionResult Details(int id)
     {
