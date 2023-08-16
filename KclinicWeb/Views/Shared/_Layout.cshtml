@@ -168,6 +168,11 @@
                         var homePagePath = "/";
                     }
 
+                    @*New Paypal menu*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Paypal" asp-action="Index">Paypal</a>
+                    </li>
+
                     @if (currentPagePath == homePagePath)
                     {
                         <li><a href="#about" class="smoothScroll">Giới Thiệu</a></li>
