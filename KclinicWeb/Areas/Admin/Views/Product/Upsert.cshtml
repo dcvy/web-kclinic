@@ -21,7 +21,7 @@
 		</div>
 		<div class="mb-3">
 			<label asp-for="Product.Description"></label>
-			<textarea asp-for="Product.Description" rows="3" class="form-control" id="open-source-plugins"></textarea>
+			<textarea asp-for="Product.Description" rows="3" class="form-control" id="open-source-plugins-product"></textarea>
 			<span asp-validation-for="Product.Description" class="text-danger"></span>
 		</div>
 		<div class="mb-3 col-6">
@@ -69,11 +69,11 @@
 	const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
 
 	tinymce.init({
-			selector: 'textarea#open-source-plugins',
-			plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+			selector: 'textarea#open-source-plugins-product',
+			plugins: 'preview importcss searchreplace autosave save directionality code visualblocks visualchars fullscreen template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
 			editimage_cors_hosts: ['picsum.photos'],
 			menubar: 'file edit view insert format tools table help',
-			toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+			toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | ltr rtl',
 			toolbar_sticky: false,
 			toolbar_sticky_offset: isSmallScreen ? 102 : 108,
 			autosave_ask_before_unload: true,
@@ -119,48 +119,14 @@
 			template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
 			template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
 			height: 600,
-			image_caption: true,
-			images_upload_url: '/UploadImage',
-			images_upload_handler: imageUploadHandler,
 			quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
 			noneditable_class: 'mceNonEditable',
 			toolbar_mode: 'sliding',
-			contextmenu: 'link image table',
 			skin: useDarkMode ? 'oxide-dark' : 'oxide',
 			content_css: useDarkMode ? 'dark' : 'default',
 			content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 	});
 
-	// Custom function to handle image uploads
-	function imageUploadHandler(blobInfo, success, failure) {
-		// Call the server-side API to save the image on the server
-		var xhr, formData;
-		xhr = new XMLHttpRequest();
-		xhr.withCredentials = false;
-		xhr.open('POST', '/UploadImage'); // The URL where the image will be uploaded
-
-		// Set the response type to 'json'
-		xhr.responseType = 'json';
-
-		xhr.onload = function () {
-			if (xhr.status !== 200) {
-				failure('HTTP Error: ' + xhr.status);
-				return;
-			}
-			if (!xhr.response || typeof xhr.response.location !== 'string') {
-				failure('Invalid JSON: ' + JSON.stringify(xhr.response));
-				return;
-			}
-			success(xhr.response.location); // Image URL returned by the server
-		};
-		xhr.onerror = function () {
-			failure('Network error occurred while trying to upload the image.');
-		};
-
-		formData = new FormData();
-		formData.append('file', blobInfo.blob(), blobInfo.filename());
-		xhr.send(formData);
-	}
 
 	function ValidateInput(){
 		if(document.getElementById("uploadBox").value==""){

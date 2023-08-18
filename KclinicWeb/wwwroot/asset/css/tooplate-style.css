@@ -186,14 +186,14 @@ margin-right: 10px;
 }
 
 
-#about, #team, #news,
+#about, #team, #news, #func,
 #news-detail {
 position: relative;
 padding-top: 100px;
 padding-bottom: 100px;
 }
 
-#news, #service {
+#news, #service, #team, #func {
 text-align: center;
 }
 
@@ -556,7 +556,7 @@ background-image: url(../images/slider3.jpg);
 -----------------------------------------*/
 
 #about {
-background: url('../images/KclinicPreview.png') no-repeat top center;
+background: url('../images/about-bg.jpg') no-repeat top center;
 background-size: cover;
 padding-top: 150px;
 padding-bottom: 150px;
@@ -831,6 +831,86 @@ transition: all ease-in-out 0.4s;
 .news-tags li a:hover {
 background: #4267b2;
 }
+
+/*---------------------------------------
+    FUNC             
+-----------------------------------------*/
+
+#func, #func-detail {
+    background: #f9f9f9;
+}
+
+#func-detail blockquote {
+    margin: 30px 0;
+}
+
+.func-detail-thumb .func-image img {
+    border-radius: 10px;
+}
+
+.func-detail-thumb h3 {
+    margin-bottom: 8px;
+}
+
+.func-image {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.func-row {
+    text-align: center;
+}
+
+
+.func-image img {
+    width: 100%;
+}
+
+.func-detail-thumb ul {
+    margin: 32px 12px 22px 0px;
+}
+
+.func-detail-thumb ul li {
+    list-style: circle;
+    font-weight: normal;
+    padding: 6px 12px 6px 0px;
+}
+
+.func-sidebar {
+    margin-top: 16px;
+}
+
+.func-social-share {
+    text-align: center;
+    padding-top: 22px;
+}
+
+.func-social-share .btn {
+    border-radius: 100px;
+    border: none;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 2px 6px;
+    padding: 8px 14px;
+}
+
+.func-social-share .btn-primary {
+    background: #3b5998;
+}
+
+.func-social-share .btn-success {
+    background: #1da1f2;
+}
+
+.func-social-share .btn-danger {
+    background: #dd4b39;
+}
+
+.func-social-share a .fa {
+    padding-right: 4px;
+}
+
+
 
 
 
