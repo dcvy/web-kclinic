@@ -148,16 +148,16 @@
             <!-- MENU LINKS -->
             <div class="collapse navbar-right navbar-collapse">
                 <ul class="nav navbar-nav ">
-                    <li><a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                     @if (User.IsInRole(SD.Role_Admin))
                     {
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Managment</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Quản lý nội dung</a>
                             <div class="dropdown-menu">
-                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></p>
-                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a></p>
-                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Blog" asp-action="Index">Blog</a></p>
-                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></p>
+                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Danh mục</a></p>
+                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Loại</a></p>
+                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Blog" asp-action="Index">Bài viết</a></p>
+                                <p><a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a></p>
                                 <div class="dropdown-divider"></div>
                             </div>
                         </li>
@@ -180,9 +180,8 @@
                     @if (currentPagePath == homePagePath)
                     {
                         <li><a href="#about" class="smoothScroll">Giới Thiệu</a></li>
-                        <li><a href="#team" class="smoothScroll">Chức Năng</a></li>
+                        <li><a href="#team" class="smoothScroll">Sản phẩm</a></li>
                         <li><a href="#news" class="smoothScroll">Tin Tức</a></li>
-                        <li><a href="#google-map" class="smoothScroll">Địa Chỉ</a></li>
                         <li class="appointment-btn"><a href="#appointment">Dùng Thử</a></li>
                     }
 
@@ -191,13 +190,13 @@
                     {
                         <li class="appointment-btn">
                             <form id="logoutForm" class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                <button id="logout" type="submit" class="nav-link btn btn-link">Logout</button>
+                                <button id="logout" type="submit" class="nav-link btn btn-link">Đăng xuất</button>
                             </form>
                         </li>
                     }
                     else
                     {
-                        <li class="appointment-btn"><a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                        <li class="appointment-btn"><a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></li>
                     }
                 </ul>
 

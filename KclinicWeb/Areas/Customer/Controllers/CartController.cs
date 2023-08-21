@@ -29,10 +29,18 @@ namespace KclinicWeb.Areas.Customer.Controllers
             foreach (var cart in ShoppingCartVM.ListCart)
             {
                 cart.Price = cart.Product.Price;
-                
-            }
+				ShoppingCartVM.CartTotal += (cart.Price);
+			}
 
             return View(ShoppingCartVM);
         }
-    }
+
+		public IActionResult Remove(int cartId)
+		{
+			var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
+			_unitOfWork.ShoppingCart.Remove(cart);
+			_unitOfWork.Save();
+			return RedirectToAction(nameof(Index));
+		}
+	}
 }

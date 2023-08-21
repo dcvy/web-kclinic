@@ -87,7 +87,7 @@
                     <div class="news-detail-thumb">
                         <p class="text-secondary" style="max-width" >@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
                         <div class="news-social-share">
-                            <h4>Share this article</h4>
+                            <h4>Chia sẻ bài viết</h4>
                             <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
                             <a href="#" class="btn btn-success"><i class="fa fa-twitter"></i>Twitter</a>
                             <a href="#" class="btn btn-danger"><i class="fa fa-google-plus"></i>Google+</a>
@@ -102,18 +102,14 @@
                             <p>@Model.Blog.Author</p>
                         </div>
 
-                        <div class="recent-post">
-                            <h4>Bài viết gần đây</h4>
 
-                            
-                        </div>
 
                         <div class="news-categories">
-                            <h4><span>Danh mục: </span><span>@Model.Blog.Category.Name</span></h4>
+                            <span><h4>Danh mục: </h4><h5>@Model.Blog.Category.Name</h5></span>
                         </div>
 
                         <div class="news-ads sidebar-ads">
-                            <h4>Sidebar Banner Ad</h4>
+                            <img src="~/images/logo/Logo.png" class="img-responsive" style="max-height: 200px;"/>
                         </div>
 
                         <div class="news-tags">
