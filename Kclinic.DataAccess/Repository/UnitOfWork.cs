@@ -21,6 +21,7 @@ namespace Kclinic.DataAccess.Repository
             Product = new ProductRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
+            Trial = new TrialRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType {  get; private set; }
@@ -28,6 +29,7 @@ namespace Kclinic.DataAccess.Repository
         public IProductRepository Product { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public ITrialRepository Trial { get; private set; }
         public void Save()
         {
             _db.SaveChanges();
