@@ -22,7 +22,9 @@ namespace Kclinic.DataAccess.Repository
             ApplicationUser = new ApplicationUserRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
             Trial = new TrialRepository(_db);
-        }
+			OrderHeader = new OrderHeaderRepository(_db);
+			OrderDetail = new OrderDetailRepository(_db);
+		}
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType {  get; private set; }
         public IBlogRepository Blog { get; private set; }
@@ -30,7 +32,9 @@ namespace Kclinic.DataAccess.Repository
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
         public ITrialRepository Trial { get; private set; }
-        public void Save()
+		public IOrderHeaderRepository OrderHeader { get; private set; }
+		public IOrderDetailRepository OrderDetail { get; private set; }
+		public void Save()
         {
             _db.SaveChanges();
         }

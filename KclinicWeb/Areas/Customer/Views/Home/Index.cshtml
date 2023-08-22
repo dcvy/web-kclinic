@@ -414,7 +414,7 @@
         <div class="row">
 
             <div class="col-md-6 col-sm-6">
-                <img src="~/asset/images/appointment-image.jpg" class="img-responsive" alt="">
+                <img src="~/asset/images/trynow.png" class="img-responsive" alt="">
             </div>
 
             <div class="col-md-6 col-sm-6">
@@ -429,29 +429,29 @@
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
                         <div class="col-md-6 col-sm-6">
                             <label asp-for="@Model.Trial.Name">Tên</label>
-                            <input asp-for="@Model.Trial.Name" type="text" class="form-control" id="name" name="name" placeholder="Full Name">
+                            <input asp-for="@Model.Trial.Name" type="text" class="form-control" id="name" name="name" placeholder="Nhập tên...">
                             <span asp-validation-for="@Model.Trial.Name" class="text-danger"></span>
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label asp-for="@Model.Trial.Email">Email</label>
-                            <input asp-for="@Model.Trial.Email" type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                            <input asp-for="@Model.Trial.Email" type="email" class="form-control" id="email" name="email" placeholder="Nhập email...">
                             <span asp-validation-for="@Model.Trial.Email" class="text-danger"></span>
                         </div>
 
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-12 col-sm-12">
                             <label asp-for="@Model.Trial.Field">Bạn đang làm ở lĩnh vực nào</label>
-                            <input asp-for="@Model.Trial.Field" type="text" class="form-control" id="field" name="field" placeholder="working field">
+                            <input asp-for="@Model.Trial.Field" type="text" class="form-control" id="field" name="field" placeholder="Nhập lĩnh vực...">
                             <span asp-validation-for="@Model.Trial.Field" class="text-danger"></span>
                         </div>
 
                         <div class="col-md-12 col-sm-12">
                             <label asp-for="@Model.Trial.Phone">Số điện thoại</label>
-                            <input asp-for="@Model.Trial.Phone" type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
+                            <input asp-for="@Model.Trial.Phone" type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập sđt...">
                             <span asp-validation-for="@Model.Trial.Phone" class="text-danger"></span>
 
                             <label asp-for="@Model.Trial.Message">Để lại lời nhắn</label>
-                            <textarea asp-for="@Model.Trial.Message" class="form-control" rows="5" id="message" name="message" placeholder="Message"></textarea>
+                            <textarea asp-for="@Model.Trial.Message" class="form-control" rows="5" id="message" name="message" placeholder="Nhập lời nhắn..."></textarea>
                             <span asp-validation-for="@Model.Trial.Message" class="text-danger"></span>
                             <button type="submit" class="form-control" id="cf-submit" name="submit">Liên hệ ngay</button>
                         </div>

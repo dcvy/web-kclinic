@@ -48,7 +48,7 @@
 							<ul class="list-group">
 								<li class="list-group-item d-flex justify-content-between bg-light">
 									<span class="text-info"> Tổng :</span>
-									<strong class="text-info">@Model.CartTotal.ToString("")</strong>
+									<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("")</strong>
 									<strong class="text-info">VNĐ</strong>
 										
 								</li>
@@ -61,7 +61,7 @@
 				<div class="card-footer">
 					<div class="card-footer row">
 						<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-							<a class="btn btn-success form-control">Thanh toán</a>
+							<a asp-action="Summary" class="btn btn-success form-control">Thanh toán</a>
 						</div>
 					</div>
 				</div>

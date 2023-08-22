@@ -15,7 +15,9 @@ namespace Kclinic.DataAccess.Repository.IRepository
         IShoppingCartRepository ShoppingCart { get; }
         IApplicationUserRepository ApplicationUser { get; }
         ITrialRepository Trial { get; }
+		IOrderDetailRepository OrderDetail { get; }
+		IOrderHeaderRepository OrderHeader { get; }
 
-        void Save();
+		void Save();
     }
 }
