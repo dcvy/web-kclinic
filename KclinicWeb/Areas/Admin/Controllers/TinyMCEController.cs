@@ -42,4 +42,29 @@ public class TinyMCEController : Controller
 		}
 	}
 
+    [HttpPost("UploadImageLaunch")]
+    public async Task<IActionResult> UploadImageLaunch(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file selected");
+
+        try
+        {
+            var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+            var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "launchs", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            var imageUrl = Url.Content($"~/images/launchs/{fileName}");
+            return Ok(new { location = imageUrl });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Error uploading the image: {ex.Message}");
+        }
+    }
+
 }

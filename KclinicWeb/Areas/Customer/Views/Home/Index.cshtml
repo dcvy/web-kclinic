@@ -75,33 +75,27 @@
             
 
 
-            <div class="col-md-6 col-sm-6">
-                <div class="about-info overrate">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.3s">K.Clinic – Phần mềm quản lý phòng khám toàn diện và chuyên sâu.</h2>
-                    <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>
-                            Hiểu được khối lượng công việc quá tải của y bác sĩ và nắm bắt xu hướng chuyển đổi số để 
-                            mang ngành y tế lên một tầm cao mới, chuyên nghiệp và tối ưu hơn. KCL mang đến sản phẩm phần mềm <span style="color:#FF9966">K.Clinic</span> – Phần mềm quản lý phòng khám
-                            toàn diện và chuyên sâu. Sản phẩm được đội ngũ nhân sự hơn 10 năm kinh nghiệm cung cấp các giải pháp cho ngành y tế 
-                            thực hiện theo quy chuẩn một cách hệ thống, đảm bảo chất lượng, đáp ứng yêu cầu nội dung và tiến độ của khách hàng.
-                        </p>
-                        <p>
-                            Phần mềm <span style="color:#FF9966">K.Clinic</span>
-                            được phát triển dành cho các phòng khám, phòng
-                            xét nghiệm, chẩn đoán hình ảnh. Giúp người sử dụng thuận tiện hơn
-                            trong quản lý dữ liệu nhập, xuất và báo cáo.
-                        </p>
-                    </div>
-                    <div class="seemore wow fadeInUp" data-wow-delay="0.5s">
-                        <a asp-action="Index" asp-controller="Gallery"> Xem thêm về quá trình triển khai của chúng tôi</a>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <img src="~/asset/images/BigImgDes.png" class="img-responsive" alt="">
-            </div>
+            @foreach (var about in Model.Abouts)
+            {
+                <div class="col-md-6 col-sm-6">
+                    <div class="about-info overrate">
+                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">@about.Title</h2>
+                        <div class="wow fadeInUp" data-wow-delay="0.4s">
+                            <p>
+                                @about.Content
+                            </p>
+                        </div>
+                        <div class="seemore wow fadeInUp" data-wow-delay="0.5s">
+                            <a asp-action="Index" asp-controller="Gallery"> Xem thêm về quá trình triển khai của chúng tôi</a>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <img src="@about.ImageUrl" class="img-responsive" alt="">
+                </div>
+            }
+            
         </div>
     </div>
 </section>
@@ -286,6 +280,72 @@
     </div>
 </section>
 
+<!-- Launch -->
+<section id="launchs" class="" data-stellar-background-ratio="2.5">
+    <div class="container mt-3 mb-3">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <!-- SECTION TITLE -->
+                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                    <h2>Tiến trình triển khai các dự án</h2>
+                </div>
+            </div>
+            <div class="slider" id="launch-slider">
+                @foreach (var Launch in Model.Launchs)
+                {
+                    <div class="col-md-4 col-sm-6 mb-20" style="margin-bottom: 30px;">
+                        <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
+                            <a asp-action="DetailLaunch" asp-route-id="@Launch.Id">
+                                <img src="@Launch.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
+                            </a>
+                            <div class="news-info">
+                                <h3>
+                                    <a asp-action="DetailLaunch" asp-route-id="@Launch.Id">
+                                        @Launch.Title
+                                    </a>
+                                </h3>
+                                @{
+                                    string description = Launch.Description;
+
+                                    // Remove HTML tags and keep only the text content
+                                    string textContent = System.Text.RegularExpressions.Regex.Replace(description, "<.*?>", "");
+
+                                    string[] words = textContent.Split(' ');
+                                    int maxWords = 20;
+                                    string truncatedDescription = string.Join(" ", words.Take(maxWords));
+                                }
+                                <p>@Html.Raw($"<p>{truncatedDescription}</p>")...</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @* <div class="col-md-4 col-sm-6">
+            <!-- NEWS THUMB -->
+            <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
+            <a href="news-detail.html">
+            <img src="images/imgs/news-image3.jpg" class="img-responsive" alt="">
+            </a>
+            <div class="news-info">
+            <span>January 27, 2018</span>
+            <h3><a href="news-detail.html">Review Annual Medical Research</a></h3>
+            <p>Vivamus non nulla semper diam cursus maximus. Pellentesque dignissim.</p>
+            <div class="author">
+            <img src="images/imgs/author-image.jpg" class="img-responsive" alt="">
+            <div class="author-info">
+            <h5>Andrio Abero</h5>
+            <p>Online Advertising</p>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>*@
+
+        </div>
+    </div>
+</section>
+
 <!-- Product -->
 <section id="team" class="" data-stellar-background-ratio="1">
     <div class="container mt-3 mb-3">
@@ -299,42 +359,42 @@
             </div>
 
             <div class="clearfix"></div>
+            <div class="slider" id="product-slider">
+                @{
+                    double delay = 0.2;
+                }
 
-            @{
-                double delay = 0.2;
-            }
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="team-thumb wow fadeInUp" data-wow-delay="@delay.ToString("F1")s">
+                            <img src="@product.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
 
-            @foreach (var product in Model.Products)
-            {
-                <div class="col-md-4 col-sm-6">
-                    <div class="team-thumb wow fadeInUp" data-wow-delay="@delay.ToString("F1")s">
-                        <img src="@product.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
-
-                        <div class="team-info">
-                            <a asp-action="Details" asp-route-productId="@product.Id">
-                            <h3>@product.Name</h3>
-                            </a>
-                            <br \>
-                            @{
-                                // Convert the price to a string
-                                string priceString = product.Price.ToString("N0"); // N0 format adds thousands separators
-                            }
-                            <h3><span>@priceString</span><span><span> .VNĐ</span></h3>
-                            <div class="team-contact-info">
-                                <p><i class="fa fa-phone"></i> 0914911577</p>
-                                <p><i class="fa fa-envelope-o"></i> <a href="#">www.kclgroup.vn</a></p>
-                            </div>
-                            <ul class="social-icon">
-                                <li><a asp-action="Details" asp-route-productId="@product.Id" class="fa fa-cart-plus"></a></li>
-                            </ul>
+                            <div class="team-info">
+                                <a asp-action="Details" asp-route-productId="@product.Id">
+                                <h3>@product.Name</h3>
+                                </a>
+                                <br \>
+                                @{
+                                    // Convert the price to a string
+                                    string priceString = product.Price.ToString("N0"); // N0 format adds thousands separators
+                                }
+                                <h3><span>@priceString</span><span><span> .VNĐ</span></h3>
+                                <div class="team-contact-info">
+                                    <p><i class="fa fa-phone"></i> 0914911577</p>
+                                    <p><i class="fa fa-envelope-o"></i> <a href="#">www.kclgroup.vn</a></p>
+                                </div>
+                                <ul class="social-icon">
+                                    <li><a asp-action="Details" asp-route-productId="@product.Id" class="fa fa-cart-plus"></a></li>
+                                </ul>
                             
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
-                delay += 0.2;
-            }
-
+                    delay += 0.2;
+                }
+            </div>
 
         </div>
     </div>
@@ -355,7 +415,7 @@
 
             @foreach (var blog in Model.Blogs)
             {
-                <div class="col-md-4 col-sm-6 mb-20" style="margin-bottom: 30px;">
+                <div class="col-md-4 col-sm-6" >
                     <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
                         <a asp-action="DetailsBlog" asp-route-id="@blog.Id">
                             <img src="@blog.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
@@ -388,6 +448,7 @@
                     </div>
                 </div>
             }
+
 
            @* <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
@@ -480,4 +541,6 @@
             4. Copy only URL and paste it within the src="" field below
     -->
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.2417671116687!2d108.20806877489419!3d16.052939139874308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b9ce0625c7%3A0xbf63be46a3f58014!2zMTYwIEzDqiDEkMOsbmggTMO9LCBIw7JhIFRodeG6rW4gxJDDtG5nLCBI4bqjaSBDaMOidSwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1691979484558!5m2!1svi!2s" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>           
+</section>
+
+

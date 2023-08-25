@@ -17,7 +17,8 @@ namespace Kclinic.DataAccess.Repository.IRepository
         ITrialRepository Trial { get; }
 		IOrderDetailRepository OrderDetail { get; }
 		IOrderHeaderRepository OrderHeader { get; }
-
+        IAboutRepository About { get; }
+        ILaunchRepository Launch { get; }
 		void Save();
     }
 }
