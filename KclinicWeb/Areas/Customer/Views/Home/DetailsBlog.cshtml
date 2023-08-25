@@ -85,7 +85,8 @@
                 <div class="col-md-8 col-sm-7">
                     <!-- NEWS THUMB -->
                     <div class="news-detail-thumb">
-                        <p class="text-secondary" style="max-width" >@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
+                        <h2 style="font-size:30px;color:orangered">@Model.Blog.Title</h2>
+                        <p class="text-secondary" style="max-width">@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
                         <div class="news-social-share">
                             <h4>Chia sẻ bài viết</h4>
                             <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
@@ -102,14 +103,8 @@
                             <p>@Model.Blog.Author</p>
                         </div>
 
-
-
                         <div class="news-categories">
                             <span><h4>Danh mục: </h4><h5>@Model.Blog.Category.Name</h5></span>
-                        </div>
-
-                        <div class="news-ads sidebar-ads">
-                            <img src="~/images/logo/Logo.png" class="img-responsive" style="max-height: 200px;"/>
                         </div>
 
                         <div class="news-tags">

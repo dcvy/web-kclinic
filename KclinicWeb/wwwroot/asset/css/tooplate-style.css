@@ -15,7 +15,17 @@ overflow-x: hidden;
 }
 
 
+/* CSS cho hover effect */
+.team-thumb {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, background-color 0.3s;
+}
 
+.team-thumb:hover {
+    background-color: #66FF66;
+    transform: scale(1.05);
+}
 
 /*---------------------------------------
     TYPOGRAPHY              
@@ -69,13 +79,27 @@ font-weight: normal;
 line-height: 24px;
 }
 
-
+.seemore {
+    display: inline-block !important;
+    background-color: #4CAF50 !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    text-decoration: none !important;
+    transition: background-color 0.3s ease !important;
+}
+.seemore:hover {
+    background-color: #FF6600 !important;
+}
+.seemore a{
+    text-decoration: none  !important;
+    color: white  !important;
+}
 /*---------------------------------------
     GENERAL               
 -----------------------------------------*/
-
-html{
--webkit-font-smoothing: antialiased;
+html {
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -103,7 +127,9 @@ background: #000000;
 .section-title {
 padding-bottom: 20px;
 }
-
+section {
+    border-top: 3px solid #f0f0f0;
+}
 .section-title h2 {
 margin-top: 0;
 }
@@ -190,6 +216,36 @@ height: 50px;
 margin-right: 10px;
 }
 
+/*---------------------------------------
+    OverateCSS
+-----------------------------------------*/
+
+.overrate {
+}
+.overrate h2{
+    font-size: 40px;
+    color: #FF9966;
+    margin-bottom: 20px; 
+}
+.overrate h4{
+    font-size: 30px;
+    color: #009966; 
+    margin-bottom: 10px; 
+    line-height: 1.6; 
+}
+.overrate p{
+    font-size: 16px;
+    color: #009966; 
+    margin-bottom: 10px; 
+    line-height: 1.6; 
+}
+
+
+/*---------------------------------------
+   adv             
+-----------------------------------------*/
+#adv {
+}
 
 #about, #team, #news, #func, #adv
 #news-detail {
@@ -485,13 +541,17 @@ background-color: transparent;
 
 
 /*---------------------------------------
+    form-function              
+-----------------------------------------*/
+.form-function{
+}
+/*---------------------------------------
     HOME              
 -----------------------------------------*/
-
 #home h1 {
-color: #ffffff;
-padding-bottom: 10px;
-margin-top: 0;
+    color: #ffffff;
+    padding-bottom: 10px;
+    margin-top: 0;
 }
 
 #home h3 {
@@ -505,7 +565,7 @@ margin: 0;
 }
 
 .slider .container {
-width: 100%;
+    width: 100%;
 }
 
 .slider .owl-dots {
@@ -520,8 +580,6 @@ width: 8px;
 height: 8px;
 margin: 5px 7px;
 border: 2px solid #d9d9d9;
-
-: transparent;
 display: block;
 -webkit-backface-visibility: visible;
 transition: opacity 200ms ease;
@@ -538,7 +596,6 @@ display: flex;
 justify-content: center;
 flex-direction: column;
 text-align: center;
-background-color: rgba(20,20,20,0.2);
 height: 100%;
 color: #fff;
 cursor: e-resize;
@@ -553,15 +610,16 @@ height: 650px;
 }
 
 .slider .item-first {
-background-image: url(../images/bigslide1.png);
+background-image: url(../images/sl1.png);
 max-width: 100%;
-max-height: 100%;
+max-height:100%;
 }
 
 .slider .item-second {
-background-image: url(../images/bigslide2.png);
+background-image: url('../images/sl2.png');
 max-width: 100%;
 max-height: 100%;
+
 }
 
 .slider .item-third {
@@ -574,9 +632,8 @@ background-image: url(../images/slider3.jpg);
 -----------------------------------------*/
 
 #about {
-padding-top: 100px;
-padding-bottom: 100px;
-background-color: #f6f6f6
+padding-top: 150px;
+padding-bottom: 50px;
 }
 
 .profile img,
@@ -606,8 +663,8 @@ margin: 0;
 -----------------------------------------*/
 
 #adv {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 150px;
+
 }
 
 .profile img,
@@ -635,7 +692,7 @@ margin: 0;
 
 
 #advs {
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 
@@ -645,7 +702,6 @@ margin: 0;
 -----------------------------------------*/
 
 .team-thumb {
-background-color: #f9f9f9;
 border-radius: 0 0 10px 10px;
 position: relative;
 overflow: hidden;
@@ -746,7 +802,6 @@ border-radius: 100%;
 -----------------------------------------*/
 
 #news, #news-detail {
-background: #f9f9f9;
 }
 
 #news-detail blockquote {
@@ -894,7 +949,6 @@ background: #4267b2;
 -----------------------------------------*/
 
 #func, #func-detail {
-    background: #f9f9f9;
 }
 
 #func-detail blockquote {
@@ -987,7 +1041,6 @@ font-weight: 500;
 }
 
 #appointment .form-control {
-background: #f9f9f9;
 border: none;
 border-radius: 3px;
 box-shadow: none;
@@ -1298,28 +1351,6 @@ h4 {
     letter-spacing: 1px;
 }
 
-}
-
-.team-info {
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-.team-info:hover {
-    background-color: #66FF66;
-    transform: scale(1.05);
-}
-
-.news-thumb {
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-.news-thumb:hover {
-    background-color: #66FF66;
-    transform: scale(1.05);
 }
 
 

@@ -78,45 +78,44 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Privacy()
+    public IActionResult Function1()
+    {
+        return View();
+    }
+    public IActionResult Function2()
+    {
+        return View();
+    }
+    public IActionResult Function3()
+    {
+        return View();
+    }
+    public IActionResult Function4()
+    {
+        return View();
+    }
+    public IActionResult Function5()
+    {
+        return View();
+    }
+    public IActionResult Function6()
+    {
+        return View();
+    }
+    public IActionResult Function7()
+    {
+        return View();
+    }
+    public IActionResult Function8()
+    {
+        return View();
+    }
+    public IActionResult Gallery()
     {
         return View();
     }
 
-	public IActionResult Function1()
-	{
-		return View();
-	}
-	public IActionResult Function2()
-	{
-		return View();
-	}
-	public IActionResult Function3()
-	{
-		return View();
-	}
-	public IActionResult Function4()
-	{
-		return View();
-	}
-	public IActionResult Function5()
-	{
-		return View();
-	}
-	public IActionResult Function6()
-	{
-		return View();
-	}
-	public IActionResult Function7()
-	{
-		return View();
-	}
-	public IActionResult Function8()
-	{
-		return View();
-	}
-
-	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

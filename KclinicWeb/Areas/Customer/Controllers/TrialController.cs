@@ -47,6 +47,37 @@ public class TrialController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+        var trialFromDbFirst = _unitOfWork.Trial.GetFirstOrDefault(u => u.Id == id);
+        if (trialFromDbFirst == null)
+        {
+            return NotFound();
+        }
 
+        return View(trialFromDbFirst);
+    }
+
+    //POST
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeletePOST(int? id)
+    {
+        var obj = _unitOfWork.Trial.GetFirstOrDefault(u => u.Id == id);
+        if (obj == null)
+        {
+            return NotFound();
+        }
+
+        _unitOfWork.Trial.Remove(obj);
+        _unitOfWork.Save();
+        TempData["success"] = "trial deleted successfully";
+        return RedirectToAction("Index");
+
+    }
 
 }

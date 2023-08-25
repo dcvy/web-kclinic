@@ -41,4 +41,5 @@ public class TinyMCEController : Controller
 			return BadRequest($"Error uploading the image: {ex.Message}");
 		}
 	}
+
 }

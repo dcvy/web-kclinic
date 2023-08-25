@@ -56,7 +56,7 @@
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
                             <h3>Tin tức</h3>
-                            <h1>Tin hot trong ngày</h1>
+                            <h1 style="color:forestgreen">Tin hot trong ngày</h1>
                             <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Đọc tin tức</a>
                         </div>
                     </div>
@@ -91,14 +91,15 @@
                             xét nghiệm, chẩn đoán hình ảnh. Giúp người sử dụng thuận tiện hơn
                             trong quản lý dữ liệu nhập, xuất và báo cáo.
                         </p>
-
-
                     </div>
-
+                    <div class="seemore wow fadeInUp" data-wow-delay="0.5s">
+                        <a asp-action="Index" asp-controller="Gallery"> Xem thêm về quá trình triển khai của chúng tôi</a>
+                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-6 col-sm-6">
-                <img src="~/asset/images/BigImageDes.png" class="img-responsive" alt="">
+                <img src="~/asset/images/BigImgDes.png" class="img-responsive" alt="">
             </div>
 
         </div>
@@ -110,26 +111,33 @@
 <section id="adv">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 ml-auto mr-auto text-center row  justify-content-center">
+            <div class="col-md-12 ml-auto mr-auto text-center row  justify-content-center overrate">
                 <h2 class="wow fadeInUp" data-wow-delay="0.3s">Ưu điểm vượt trội của K.Clinic</h2>
-                <p class="wow fadeInUp" data-wow-delay="0.4s">
+                <h4 class="wow fadeInUp" data-wow-delay="0.3s">
                     Tính năng kết nối với máy siêu âm để chuẩn đoán hình ảnh chính xác, được các bác sĩ đầu ngành tin dùng
-                </p>
-                <div class="row text-center w-100" style="margin-top:30px;">
+                </h4>
+                <div class="row text-center w-100">
                     <div class="col-lg-12 py-5 d-flex text-center">
-                        <img src="~/asset/images/overrate.png" style="width:740px; height:520px" class="img-container" alt="vttech header">
+                        <img src="~/asset/images/sa.png" style="width:100%; height:100%" class="img-container" alt="">
+                    </div>
+                </div>
+                <h4 class="wow fadeInUp" data-wow-delay="0.3s">
+                    Tính năng liên kết Zalo để gửi thông tin nhanh chóng và thuận tiện đến dùng
+                </h4>
+                <div class="row text-center w-100">
+                    <div class="col-lg-12 py-5 d-flex text-center">
+                        <img src="~/asset/images/sendzalo.png" style="width:100%; height:100%" class="img-container" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-    <section id="advs" class="py-md-0 my-5">
+    <section id="advs" class="py-md-0 my-5" style="margin-top:3rem; margin-bottom:3rem;">
         <div class="container my-5" style="margin-top:3rem; margin-bottom:3rem;">
             <div class="row py-3 bg-gradient-primary">
-            <div class="col-md-12 ml-auto mr-auto ">
+                <div class="col-md-12 ml-auto mr-auto overrate">
                     <div class="row">
-                    <div class="col-12 col-lg-4 col-md-6">
+                        <div class="col-12 col-lg-4 col-md-6 ">
                             <div class="d-flex">
                                 <div class="ml-2">
                                     <img class="img" width="35" height="35" title="icon 05" alt="icon 05" src="~/asset/images/ic-05.svg">
@@ -142,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="col-12 col-lg-4 col-md-6">
+                        <div class="col-12 col-lg-4 col-md-6 ">
                             <div class="d-flex">
                                 <div class="ml-2">
                                     <img class="img" width="35" height="35" title="icon 06" alt="icon 06" src="~/asset/images/ic-06.svg">
@@ -155,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="col-12 col-lg-4 col-md-6">
+                        <div class="col-12 col-lg-4 col-md-6 ">
                             <div class="d-flex">
                                 <div class="ml-2">
                                     <img class="img" width="35" height="35" title="icon 07" alt="icon 07" src="~/asset/images/ic-05.svg">
@@ -174,6 +182,9 @@
 
         </div>
     </section>
+
+</section>
+
 
  <!-- CHUCNANG -->
 <section id="func" class="">
@@ -310,7 +321,7 @@
                             }
                             <h3><span>@priceString</span><span><span> .VNĐ</span></h3>
                             <div class="team-contact-info">
-                                <p><i class="fa fa-phone"></i> 0932 070 463 - 0903 555 753</p>
+                                <p><i class="fa fa-phone"></i> 0914911577</p>
                                 <p><i class="fa fa-envelope-o"></i> <a href="#">www.kclgroup.vn</a></p>
                             </div>
                             <ul class="social-icon">
