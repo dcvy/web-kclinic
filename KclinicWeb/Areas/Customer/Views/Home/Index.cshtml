@@ -1,37 +1,5 @@
 ﻿@model Kclinic.Models.ViewModels.HomeVM
 
-@*
-<div class="row pb-3">
-	@foreach(var blog in Model)
-	{
-		<div class="col-lg-3 col-md-6">
-			<div class="row p-2">
-				<div class="col-12 p-1" style="border:1px solid #008cba; border-radius: 5px;">
-					<div class="card">
-						<img src="@blog.ImageUrl" class="card-img-top rounded"/>
-
-						<div class="card-body">
-						<div class="pl-1">
-							<p class="card-title h5 text-primary">@blog.Title</p>
-							<p class="card-title text-info">by <b>@blog.Author</b></p>
-						</div>
-						</div>
-					</div>
-					<div>
-						<a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@blog.Id">
-							Details
-						</a>
-					</div>
-				</div> 
-			</div>
-		</div>
-	}
-</div>
-*@
-
-
-
-
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
     <div class="container">
@@ -72,276 +40,117 @@
 <section id="about" class="">
     <div class="container">
         <div class="row">
-            
-
-
-            @foreach (var about in Model.Abouts)
-            {
-                <div class="col-md-6 col-sm-6">
-                    <div class="about-info overrate">
-                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">@about.Title</h2>
-                        <div class="wow fadeInUp" data-wow-delay="0.4s">
-                            <p>
-                                @about.Content
-                            </p>
-                        </div>
-                        <div class="seemore wow fadeInUp" data-wow-delay="0.5s">
-                            <a asp-action="Index" asp-controller="Gallery"> Xem thêm về quá trình triển khai của chúng tôi</a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <img src="@about.ImageUrl" class="img-responsive" alt="">
-                </div>
+            @{
+                var about1 = Model.Abouts.FirstOrDefault(a => a.Id == 1);
             }
-            
+            @if (about1 != null)
+            {
+            <div class="col-md-6 col-sm-6">
+                <div class="about-info overrate">
+                    <h2 class="wow fadeInUp" data-wow-delay="0.3s">@about1.Title</h2>
+                    <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <p>
+                            @about1.Content
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-info text-center overrate">
+                    <h2 class="wow fadeInUp" data-wow-delay="0.3s">Video Giới thiệu</h2>
+                    <iframe width="350" height="315" src="https://www.youtube.com@(about1.Link)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            }
         </div>
     </div>
 </section>
-
-
-<!-- UUDIEM -->
-<section id="adv">
+<section id="specialfunction" class="" data-stellar-background-ratio="2.5">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 ml-auto mr-auto text-center row  justify-content-center overrate">
-                <h2 class="wow fadeInUp" data-wow-delay="0.3s">Ưu điểm vượt trội của K.Clinic</h2>
-                <h4 class="wow fadeInUp" data-wow-delay="0.3s">
-                    Tính năng kết nối với máy siêu âm để chuẩn đoán hình ảnh chính xác, được các bác sĩ đầu ngành tin dùng
-                </h4>
-                <div class="row text-center w-100">
-                    <div class="col-lg-12 py-5 d-flex text-center">
-                        <img src="~/asset/images/sa.png" style="width:100%; height:100%" class="img-container" alt="">
-                    </div>
+            @{
+                var about2 = Model.Abouts.FirstOrDefault(a => a.Id == 2);
+            }
+            <div class="col-md-12 ml-auto mr-auto text-center row justify-content-center overrate">
+                <h2 class="wow fadeInUp" data-wow-delay="0.3s">@about2.Title</h2>
+                <div class="caption-container">
+                    <h4 id="caption" class="wow fadeInUp" data-wow-delay="0.3s"></h4>
                 </div>
-                <h4 class="wow fadeInUp" data-wow-delay="0.3s">
-                    Tính năng liên kết Zalo để gửi thông tin nhanh chóng và thuận tiện đến dùng
-                </h4>
-                <div class="row text-center w-100">
-                    <div class="col-lg-12 py-5 d-flex text-center">
-                        <img src="~/asset/images/sendzalo.png" style="width:100%; height:100%" class="img-container" alt="">
+                <div class="container mt-3 mb-3 " >
+                    @{
+                        int num = 1;
+                    }
+                    @foreach (var feature in Model.Features)
+                    {
+                        <!-- Full-width images with number text -->
+                        <div class="mySlides text-center">
+                            <img src="@feature.ImageUrl" style="width:100%" />
+                        </div>
+                    }
+                    <!-- Next and previous buttons -->
+                    <a class="bef" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="aft" onclick="plusSlides(1)">&#10095;</a>
+                   
+                    <!-- Thumbnail images -->
+                    <div class="row small-item " style="width:100%">
+                        <div class="clearfix"></div>
+                        <div class="slider" id="feature-slider">
+                        @foreach (var Feature in Model.Features)
+                        {
+                            <div class="column">
+                                <img class="demo cursor text-center" src="@Feature.ImageUrl" style="width:100%" onclick="currentSlide(@num)" alt="@Feature.Title">
+                            </div>
+                            num++;
+                        }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <section id="advs" class="py-md-0 my-5" style="margin-top:3rem; margin-bottom:3rem;">
-        <div class="container my-5" style="margin-top:3rem; margin-bottom:3rem;">
-            <div class="row py-3 bg-gradient-primary">
-                <div class="col-md-12 ml-auto mr-auto overrate">
-                    <div class="row">
-                        <div class="col-12 col-lg-4 col-md-6 ">
-                            <div class="d-flex">
-                                <div class="ml-2">
-                                    <img class="img" width="35" height="35" title="icon 05" alt="icon 05" src="~/asset/images/ic-05.svg">
-                                </div>
-                                <div class="card-body py-0">
-                                    <h3 class="my-0 title h4 fw-bold">An toàn &amp; bảo mật </h3>
-                                    <p class="h5 mt-0 mr-lg-4">
-                                        Bảo mật hệ thống qua nhiều lớp phân quyền, kiểm soát mọi hoạt động của người dùng.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6 ">
-                            <div class="d-flex">
-                                <div class="ml-2">
-                                    <img class="img" width="35" height="35" title="icon 06" alt="icon 06" src="~/asset/images/ic-06.svg">
-                                </div>
-                                <div class="card-body py-0">
-                                    <h3 class="my-0 title h4 fw-bold">Linh hoạt &amp; hiệu quả</h3>
-                                    <p class="h5 mt-0 mr-lg-4">
-                                        Linh hoạt tùy chỉnh, quy trình quản lý được thiết kế bám sát nghiệp vụ tại phòng khám.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6 ">
-                            <div class="d-flex">
-                                <div class="ml-2">
-                                    <img class="img" width="35" height="35" title="icon 07" alt="icon 07" src="~/asset/images/ic-05.svg">
-                                </div>
-                                <div class="card-body py-0">
-                                    <h3 class="my-0 title h4 fw-bold">Trực quan &amp; dễ dùng</h3>
-                                    <p class="h5 mt-0 mr-lg-4">
-                                        Thông tin thể hiện tại 1 nơi, các tính năng được thiết kế tối giản phục vụ cho nhiều đối tượng.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
 </section>
 
 
- <!-- CHUCNANG -->
+<!-- CHUCNANG -->
 <section id="func" class="">
     <div class="container mt-3 mb-3">
         <div class="row">
-            <div class="col-md-12 col-sm-12 overrate">
-                <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.3s">Các tính năng quản lý chuyên khoa</h2>
-                    <h4 class="wow fadeInUp" data-wow-delay="0.4s">
-                        Phần mềm quản lý phòng khám Kclinic giúp quản lý bệnh nhân, lịch hẹn, đơn thuốc và nhiều hơn thế nữa ...
-                    </h4>
-                </div>
-                <div id="funcarea" class="row" style="padding-top:40px;">
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function1" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/ho-so-dien-tu.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Tiếp nhận bệnh nhân</h3>
-                        </a>
-
-
+            @{
+                var about3 = Model.Abouts.FirstOrDefault(a => a.Id == 3);
+            }
+            @if (about3 != null)
+            {
+                <div class="col-md-12 col-sm-12 overrate">
+                    <div class="about-info">
+                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">@about3.Title</h2>
+                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">
+                            @about3.Content
+                        </h4>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function2" target=" _self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/lich-hen.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Khám bệnh</h3>
-                        </a>
-
-
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function3" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/patient-file.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Xét nghiệm</h3>
-                        </a>
-
-
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function4" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/patient.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Chuẩn đoán hình ảnh</h3>
-                        </a>
-
-
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function5" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/dich-vu.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Quản lý dược phẩm</h3>
-                        </a>
-
-
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function6" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/telesaleMarketing.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Quản lý Danh mục</h3>
-                        </a>
-
-
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function7" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/kho.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Quản trị hệ thống</h3>
-                        </a>
-
-
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Function8" target="_self" class="text-center">
-                            <div class=" d-flex justify-content-center">
-                                <img src="~/asset/images/voucher.png" style="width:45px; height:45px;" />
-                            </div>
-                            <h3 style="margin-bottom:25px;">Hệ thống báo cáo</h3>
-                        </a>
-
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- Launch -->
-<section id="launchs" class="" data-stellar-background-ratio="2.5">
-    <div class="container mt-3 mb-3">
-        <div class="row">
-
-            <div class="col-md-12 col-sm-12">
-                <!-- SECTION TITLE -->
-                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Tiến trình triển khai các dự án</h2>
-                </div>
-            </div>
-            <div class="slider" id="launch-slider">
-                @foreach (var Launch in Model.Launchs)
-                {
-                    <div class="col-md-4 col-sm-6 mb-20" style="margin-bottom: 30px;">
-                        <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                            <a asp-action="DetailLaunch" asp-route-id="@Launch.Id">
-                                <img src="@Launch.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
-                            </a>
-                            <div class="news-info">
-                                <h3>
-                                    <a asp-action="DetailLaunch" asp-route-id="@Launch.Id">
-                                        @Launch.Title
+                    @if (Model.Functions != null)
+                    {
+                        <div id="funcarea" class="row" style="padding-top:40px;">
+                            @{
+                                int count = 1;
+                            }
+                            @foreach (var function in Model.Functions)
+                            {
+                                <div class="col-lg-3 col-md-4 col-6 px-3 mb-2">
+                                    <a asp-area="Customer" asp-controller="Home" asp-action="Function" asp-route-id="@function.Id" target="_self" class="text-center">
+                                        <div class=" d-flex justify-content-center">
+                                            <img src="~/asset/images/func@(count).png" style="width:45px; height:45px;" />
+                                        </div>
+                                        <h3 style="margin-bottom:25px;">@function.Title</h3>
                                     </a>
-                                </h3>
-                                @{
-                                    string description = Launch.Description;
-
-                                    // Remove HTML tags and keep only the text content
-                                    string textContent = System.Text.RegularExpressions.Regex.Replace(description, "<.*?>", "");
-
-                                    string[] words = textContent.Split(' ');
-                                    int maxWords = 20;
-                                    string truncatedDescription = string.Join(" ", words.Take(maxWords));
-                                }
-                                <p>@Html.Raw($"<p>{truncatedDescription}</p>")...</p>
-                            </div>
+                                </div>
+                                count++;
+                            }
                         </div>
-                    </div>
-                }
-            </div>
-            @* <div class="col-md-4 col-sm-6">
-            <!-- NEWS THUMB -->
-            <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-            <a href="news-detail.html">
-            <img src="images/imgs/news-image3.jpg" class="img-responsive" alt="">
-            </a>
-            <div class="news-info">
-            <span>January 27, 2018</span>
-            <h3><a href="news-detail.html">Review Annual Medical Research</a></h3>
-            <p>Vivamus non nulla semper diam cursus maximus. Pellentesque dignissim.</p>
-            <div class="author">
-            <img src="images/imgs/author-image.jpg" class="img-responsive" alt="">
-            <div class="author-info">
-            <h5>Andrio Abero</h5>
-            <p>Online Advertising</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>*@
+                    }
 
+                </div>
+            }
         </div>
     </div>
 </section>
@@ -350,16 +159,21 @@
 <section id="team" class="" data-stellar-background-ratio="1">
     <div class="container mt-3 mb-3">
         <div class="row">
-
-            <div class="col-md-12 col-sm-12">
-                <!-- SECTION TITLE -->
-                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Sản phẩm của chúng tôi</h2>
+            @{
+                var about4 = Model.Abouts.FirstOrDefault(a => a.Id == 4);
+            }
+            @if (about4 != null)
+            {
+                <div class="col-md-12 col-sm-12 overrate">
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                        <h2>@about4.Title</h2>
+                    </div>
                 </div>
-            </div>
-
+            }
             <div class="clearfix"></div>
-            <div class="slider" id="product-slider">
+
+           <div class="slider" id="product-slider">
                 @{
                     double delay = 0.2;
                 }
@@ -379,7 +193,7 @@
                                     // Convert the price to a string
                                     string priceString = product.Price.ToString("N0"); // N0 format adds thousands separators
                                 }
-                                <h3><span>@priceString</span><span><span> .VNĐ</span></h3>
+                                <h3><span>@priceString</span><span> .VNĐ</span></h3>
                                 <div class="team-contact-info">
                                     <p><i class="fa fa-phone"></i> 0914911577</p>
                                     <p><i class="fa fa-envelope-o"></i> <a href="#">www.kclgroup.vn</a></p>
@@ -387,15 +201,13 @@
                                 <ul class="social-icon">
                                     <li><a asp-action="Details" asp-route-productId="@product.Id" class="fa fa-cart-plus"></a></li>
                                 </ul>
-                            
                             </div>
-
                         </div>
                     </div>
+
                     delay += 0.2;
                 }
             </div>
-
         </div>
     </div>
 </section>
@@ -405,29 +217,35 @@
 <section id="news" class="" data-stellar-background-ratio="2.5">
     <div class="container mt-3 mb-3">
         <div class="row">
-
-            <div class="col-md-12 col-sm-12">
-                <!-- SECTION TITLE -->
-                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Tin tức mới nhất</h2>
-                </div>
-            </div>
-
-            @foreach (var blog in Model.Blogs)
+            @{
+                var about5 = Model.Abouts.FirstOrDefault(a => a.Id == 5);
+            }
+            @if (about5 != null)
             {
-                <div class="col-md-4 col-sm-6" >
-                    <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                        <a asp-action="DetailsBlog" asp-route-id="@blog.Id">
-                            <img src="@blog.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
+                <div class="col-md-12 col-sm-12 overrate">
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                        <h2>@about5.Title</h2>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+            <div class="slider" id="blog-slider">
+            @foreach (var Blog in Model.Blogs)
+            {
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="news-thumb wow fadeInUp text-center" data-wow-delay="0.4s">
+                        <a asp-action="DetailsBlog" asp-route-id="@Blog.Id">
+                            <img src="@Blog.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
                         </a>
                         <div class="news-info">
                             <h3>
-                                <a asp-action="DetailsBlog"asp-route-id="@blog.Id">
-                                    @blog.Title
+                                <a asp-action="DetailsBlog" asp-route-id="@Blog.Id">
+                                    @Blog.Title
                                 </a>
                             </h3>
                             @{
-                                string description = blog.Description;
+                                string description = Blog.Description;
 
                                 // Remove HTML tags and keep only the text content
                                 string textContent = System.Text.RegularExpressions.Regex.Replace(description, "<.*?>", "");
@@ -438,39 +256,67 @@
                             }
                             <p>@Html.Raw($"<p>{truncatedDescription}</p>")...</p>
                             <div class="author">
-                                
+
                                 <div class="author-info">
                                     <h5 style="display: inline;"><strong>Tác giả: </strong></h5>
-                                    <h5 style ="display: inline;">@blog.Author</h5>
+                                    <h5 style="display: inline;">@Blog.Author</h5>
                                 </div>
-                            </div>
-                        </div>                    
-                    </div>
-                </div>
-            }
-
-
-           @* <div class="col-md-4 col-sm-6">
-                <!-- NEWS THUMB -->
-                <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <a href="news-detail.html">
-                        <img src="images/imgs/news-image3.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="news-info">
-                        <span>January 27, 2018</span>
-                        <h3><a href="news-detail.html">Review Annual Medical Research</a></h3>
-                        <p>Vivamus non nulla semper diam cursus maximus. Pellentesque dignissim.</p>
-                        <div class="author">
-                            <img src="images/imgs/author-image.jpg" class="img-responsive" alt="">
-                            <div class="author-info">
-                                <h5>Andrio Abero</h5>
-                                <p>Online Advertising</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>*@
+            }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Launch -->
+<section id="launchs" class="" data-stellar-background-ratio="2.5">
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            @{
+                var about6 = Model.Abouts.FirstOrDefault(a => a.Id == 6);
+            }
+            @if (about6 != null)
+            {
+                <div class="col-md-12 col-sm-12 overrate">
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
+                        <h2>@about6.Title</h2>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+            <div class="slider" id="launch-slider">
+            @foreach (var Launch in Model.Launchs)
+            {
+                <div class="col-md-4 col-sm-6 mb-20" style="margin-bottom: 30px;">
+                    <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
+                        <a asp-action="DetailLaunch" asp-route-id="@Launch.Id">
+                            <img src="@Launch.ImageUrl" class="img-responsive" style="width: 360px; height: 240px;" alt="">
+                        </a>
+                        <div class="news-info">
+                            <h3>
+                                <a asp-action="DetailLaunch" asp-route-id="@Launch.Id">
+                                    @Launch.Title
+                                </a>
+                            </h3>
+                            @{
+                                string description = Launch.Description;
 
+                                // Remove HTML tags and keep only the text content
+                                string textContent = System.Text.RegularExpressions.Regex.Replace(description, "<.*?>", "");
+
+                                string[] words = textContent.Split(' ');
+                                int maxWords = 20;
+                                string truncatedDescription = string.Join(" ", words.Take(maxWords));
+                            }
+                            <p>@Html.Raw($"<p>{truncatedDescription}</p>")...</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
         </div>
     </div>
 </section>
@@ -480,58 +326,60 @@
 <section id="appointment" data-stellar-background-ratio="3">
     <div class="container">
         <div class="row">
-
-            <div class="col-md-6 col-sm-6">
-                <img src="~/asset/images/trynow.png" class="img-responsive" alt="">
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <!-- CONTACT FORM HERE -->
-                <form id="appointment-form" role="form" method="post" asp-action="Create" asp-area="Customer" asp-controller="Trial">
-
-                    <!-- SECTION TITLE -->
-                    <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
-                        <h2>Bắt đầu dùng thử miễn phí</h2>
+            @{
+                var about7 = Model.Abouts.FirstOrDefault(a => a.Id == 7);
+            }
+            @if (about7 != null)
+            {
+                    <div class="col-md-6 col-sm-6">
+                        <img src="@about7.ImageUrl" class="img-responsive" alt="">
                     </div>
 
-                    <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="col-md-6 col-sm-6">
-                            <label asp-for="@Model.Trial.Name">Tên</label>
-                            <input asp-for="@Model.Trial.Name" type="text" class="form-control" id="name" name="name" placeholder="Nhập tên...">
-                            <span asp-validation-for="@Model.Trial.Name" class="text-danger"></span>
+                    <div class="col-md-6 col-sm-6 overrate">
+                        <!-- CONTACT FORM HERE -->
+                    <form id="appointment-form" role="form" method="post" asp-action="Create" asp-area="Customer" asp-controller="Trial">
+
+                        <!-- SECTION TITLE -->
+                        <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                            <h2>@about7.Title</h2>
                         </div>
 
-                        <div class="col-md-6 col-sm-6">
-                            <label asp-for="@Model.Trial.Email">Email</label>
-                            <input asp-for="@Model.Trial.Email" type="email" class="form-control" id="email" name="email" placeholder="Nhập email...">
-                            <span asp-validation-for="@Model.Trial.Email" class="text-danger"></span>
+                        <div class="wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="col-md-6 col-sm-6">
+                                <label asp-for="@Model.Trial.Name">Tên</label>
+                                <input asp-for="@Model.Trial.Name" type="text" class="form-control" id="name" name="name" placeholder="Nhập tên...">
+                                <span asp-validation-for="@Model.Trial.Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label asp-for="@Model.Trial.Email">Email</label>
+                                <input asp-for="@Model.Trial.Email" type="email" class="form-control" id="email" name="email" placeholder="Nhập email...">
+                                <span asp-validation-for="@Model.Trial.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <label asp-for="@Model.Trial.Field">Bạn đang làm ở lĩnh vực nào</label>
+                                <input asp-for="@Model.Trial.Field" type="text" class="form-control" id="field" name="field" placeholder="Nhập lĩnh vực...">
+                                <span asp-validation-for="@Model.Trial.Field" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <label asp-for="@Model.Trial.Phone">Số điện thoại</label>
+                                <input asp-for="@Model.Trial.Phone" type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập sđt...">
+                                <span asp-validation-for="@Model.Trial.Phone" class="text-danger"></span>
+
+                                <label asp-for="@Model.Trial.Message">Để lại lời nhắn</label>
+                                <textarea asp-for="@Model.Trial.Message" class="form-control" rows="5" id="message" name="message" placeholder="Nhập lời nhắn..."></textarea>
+                                <span asp-validation-for="@Model.Trial.Message" class="text-danger"></span>
+                                <button type="submit" class="form-control" id="cf-submit" name="submit">Liên hệ ngay</button>
+                            </div>
                         </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <label asp-for="@Model.Trial.Field">Bạn đang làm ở lĩnh vực nào</label>
-                            <input asp-for="@Model.Trial.Field" type="text" class="form-control" id="field" name="field" placeholder="Nhập lĩnh vực...">
-                            <span asp-validation-for="@Model.Trial.Field" class="text-danger"></span>
-                        </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <label asp-for="@Model.Trial.Phone">Số điện thoại</label>
-                            <input asp-for="@Model.Trial.Phone" type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập sđt...">
-                            <span asp-validation-for="@Model.Trial.Phone" class="text-danger"></span>
-
-                            <label asp-for="@Model.Trial.Message">Để lại lời nhắn</label>
-                            <textarea asp-for="@Model.Trial.Message" class="form-control" rows="5" id="message" name="message" placeholder="Nhập lời nhắn..."></textarea>
-                            <span asp-validation-for="@Model.Trial.Message" class="text-danger"></span>
-                            <button type="submit" class="form-control" id="cf-submit" name="submit">Liên hệ ngay</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+                    </form>
+                </div>
+            }
         </div>
     </div>
 </section>
-
-
 <!-- GOOGLE MAP -->
 <section id="google-map">
     <!-- How to change your own map point
@@ -540,7 +388,67 @@
             3. Click "Share" and choose "Embed map" tab
             4. Copy only URL and paste it within the src="" field below
     -->
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.2417671116687!2d108.20806877489419!3d16.052939139874308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b9ce0625c7%3A0xbf63be46a3f58014!2zMTYwIEzDqiDEkMOsbmggTMO9LCBIw7JhIFRodeG6rW4gxJDDtG5nLCBI4bqjaSBDaMOidSwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1691979484558!5m2!1svi!2s" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.2417671116687!2d108.20806877489419!3d16.052939139874308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b9ce0625c7%3A0xbf63be46a3f58014!2zMTYwIEzDqiDEkMOsbmggTMO9LCBIw7JhIFRodeG6rW4gxJDDtG5nLCBI4bqjaSBDaMOidSwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1691979484558!5m2!1svi!2s" style="border:0;width:100%; height:350px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </section>
+<!-- CLIENTS -->
+<section id="partners" class="" data-stellar-background-ratio="2.5">
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            @{
+                var about8 = Model.Abouts.FirstOrDefault(a => a.Id == 8);
+            }
+            @if (about8 != null)
+            {
+                <div class="col-md-12 col-sm-12 overrate">
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp text-center" data-wow-delay="0.1s">
+                        <h2 style="padding-top:20px">@about8.Title</h2>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+            <div class="slider" id="partner-slider">
+            @foreach (var Partner in Model.Partners)
+            {
+                <div class="col-md-12 col-sm-12 mb-20" style="">
+                    <div class="news-thumb wow fadeInUp text-center" data-wow-delay="0.4s">
+                        <img src="@Partner.ImageUrl" class="img-responsive" style="width: 150px; height: 150px;" alt="">
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
 
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("demo");
+            let captionText = document.getElementById("caption");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
+    </script>
+}

@@ -27,11 +27,13 @@ public class HomeController : Controller
 		{
 			Blogs = _unitOfWork.Blog.GetAll(includeProperties: "Category,CoverType"),
 			Products = _unitOfWork.Product.GetAll(),
+			Launchs = _unitOfWork.Launch.GetAll(),
             Abouts = _unitOfWork.About.GetAll(),
-			Launchs = _unitOfWork.Launch.GetAll()
-		};
-
-		return View(viewModel);
+            Functions = _unitOfWork.Function.GetAll(),
+            Features = _unitOfWork.Feature.GetAll(),
+            Partners = _unitOfWork.Partner.GetAll()
+        };
+        return View(viewModel);
 	}
 
     public IActionResult Details(int productId)
@@ -55,14 +57,13 @@ public class HomeController : Controller
 
         return View(blogObj);
     }
+    public IActionResult DetailLaunch(int id)
+    {
+        Launch launchObj = _unitOfWork.Launch.GetFirstOrDefault(u => u.Id == id);
+        return View(launchObj);
+    }
 
-	public IActionResult DetailLaunch(int id)
-	{
-		Launch launchObj = _unitOfWork.Launch.GetFirstOrDefault(u => u.Id == id);
-		return View(launchObj);
-	}
-
-	[HttpPost]
+    [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize]
     public IActionResult Details(ShoppingCart shoppingCart)
@@ -86,38 +87,17 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Function1()
+    public IActionResult Function(int id)
     {
-        return View();
+        var viewModel = new FunctionVM
+        {
+            Function = _unitOfWork.Function.GetFirstOrDefault(u => u.Id == id),
+            Functions = _unitOfWork.Function.GetAll()
+        };
+
+        return View(viewModel);
     }
-    public IActionResult Function2()
-    {
-        return View();
-    }
-    public IActionResult Function3()
-    {
-        return View();
-    }
-    public IActionResult Function4()
-    {
-        return View();
-    }
-    public IActionResult Function5()
-    {
-        return View();
-    }
-    public IActionResult Function6()
-    {
-        return View();
-    }
-    public IActionResult Function7()
-    {
-        return View();
-    }
-    public IActionResult Function8()
-    {
-        return View();
-    }
+
     public IActionResult Gallery()
     {
         return View();

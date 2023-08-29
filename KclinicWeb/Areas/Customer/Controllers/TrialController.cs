@@ -20,9 +20,10 @@ public class TrialController : Controller
     private readonly IUnitOfWork _unitOfWork;
     private readonly IWebHostEnvironment _hostEnvironment;
 
-    public TrialController(IUnitOfWork unitOfWork)
+    public TrialController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
     {
         _unitOfWork = unitOfWork;
+        _hostEnvironment = hostEnvironment;
     }
 
     public IActionResult Index()

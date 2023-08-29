@@ -41,7 +41,6 @@ public class TinyMCEController : Controller
 			return BadRequest($"Error uploading the image: {ex.Message}");
 		}
 	}
-
     [HttpPost("UploadImageLaunch")]
     public async Task<IActionResult> UploadImageLaunch(IFormFile file)
     {
@@ -66,5 +65,4 @@ public class TinyMCEController : Controller
             return BadRequest($"Error uploading the image: {ex.Message}");
         }
     }
-
 }

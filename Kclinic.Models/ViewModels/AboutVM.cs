@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Kclinic.Models.ViewModels
 {
-	public class AboutVM
-	{
-		public About About { get; set; }
-		
-	}
+    public class AboutVM
+    {
+        public About About { get; set; }
+
+    }
 }

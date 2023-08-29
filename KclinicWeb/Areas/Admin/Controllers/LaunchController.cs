@@ -30,7 +30,7 @@ public class LaunchController : Controller
 
     public IActionResult Index()
     {
-        return View();
+		return View();
     }
 
     //GET
@@ -54,55 +54,55 @@ public class LaunchController : Controller
 
     }
 
-    //POST
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Upsert(LaunchVM obj, IFormFile? file)
-    {
-        if (ModelState.IsValid)
-        {
-            string wwwRootPath = _hostEnvironment.WebRootPath;
-            if (file != null)
-            {
-                string fileName = Guid.NewGuid().ToString();
-                var uploads = Path.Combine(wwwRootPath, @"images\launchs");
-                var extension = Path.GetExtension(file.FileName);
+	//POST
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public IActionResult Upsert(LaunchVM obj, IFormFile? file)
+	{
+		if (ModelState.IsValid)
+		{
+			string wwwRootPath = _hostEnvironment.WebRootPath;
+			if (file != null)
+			{
+				string fileName = Guid.NewGuid().ToString();
+				var uploads = Path.Combine(wwwRootPath, @"images\launchs");
+				var extension = Path.GetExtension(file.FileName);
 
-                if (obj.Launch.ImageUrl != null)
-                {
-                    var oldImagePath = Path.Combine(wwwRootPath, obj.Launch.ImageUrl.TrimStart('\\'));
-                    if (System.IO.File.Exists(oldImagePath))
-                    {
-                        System.IO.File.Delete(oldImagePath);
-                    }
-                }
+				if (obj.Launch.ImageUrl != null)
+				{
+					var oldImagePath = Path.Combine(wwwRootPath, obj.Launch.ImageUrl.TrimStart('\\'));
+					if (System.IO.File.Exists(oldImagePath))
+					{
+						System.IO.File.Delete(oldImagePath);
+					}
+				}
 
-                using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
-                {
-                    file.CopyTo(fileStreams);
-                }
-                obj.Launch.ImageUrl = @"\images\launchs\" + fileName + extension;
+				using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+				{
+					file.CopyTo(fileStreams);
+				}
+				obj.Launch.ImageUrl = @"\images\launchs\" + fileName + extension;
 
-            }
-            if (obj.Launch.Id == 0)
-            {
-                _unitOfWork.Launch.Add(obj.Launch);
-            }
-            else
-            {
-                _unitOfWork.Launch.Update(obj.Launch);
-            }
-            _unitOfWork.Save();
-            TempData["success"] = "Launch created successfully";
-            return RedirectToAction("Index");
-        }
-        return View(obj);
-    }
+			}
+			if (obj.Launch.Id == 0)
+			{
+				_unitOfWork.Launch.Add(obj.Launch);
+			}
+			else
+			{
+				_unitOfWork.Launch.Update(obj.Launch);
+			}
+			_unitOfWork.Save();
+			TempData["success"] = "Launch created successfully";
+			return RedirectToAction("Index");
+		}
+		return View(obj);
+	}
 
 
 
-    #region API CALLS
-    [HttpGet]
+	#region API CALLS
+	[HttpGet]
     public IActionResult GetAll()
     {
         var LaunchList = _unitOfWork.Launch.GetAll();

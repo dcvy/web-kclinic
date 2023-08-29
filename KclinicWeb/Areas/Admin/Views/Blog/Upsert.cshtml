@@ -106,7 +106,15 @@
 			</select>
 			<span asp-validation-for="Blog.CoverTypeId" class="text-danger"></span>
 		</div>
+		@if(Model.Blog.ImageUrl!= null){
+		<div class="col-2 pt-4">
+			<p>Ảnh cũ:</p>
+							<img src="@Model.Blog.ImageUrl"
+			width="200px" height="200px" style="border-radius:5px; border:1px solid #bbb9b9" />
+		</div>
+		}
 		<br /><br />
+		}
 		<div class="col-12">
 			@if (Model.Blog.Id != 0)
 			{
@@ -123,10 +131,7 @@
 
 	</div>
 		</div>
-		<div class="col-2 pt-4">
-			<img src="@Model.Blog.ImageUrl"
-			width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
-		</div>
+	
 	</div>
 
 </form>

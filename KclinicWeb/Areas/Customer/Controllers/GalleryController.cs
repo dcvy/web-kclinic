@@ -18,7 +18,6 @@ namespace KclinicWeb.Areas.Customer.Controllers;
 public class GalleryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IWebHostEnvironment _hostEnvironment;
 
     public GalleryController(IUnitOfWork unitOfWork)
     {

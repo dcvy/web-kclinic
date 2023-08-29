@@ -3,9 +3,9 @@
 <style>
 	/* For other boilerplate styles, see: https://www.tiny.cloud/docs/tinymce/6/editor-content-css/ */
 	/*
-		* For rendering images inserted using the image plugin.
-		* Includes image captions using the HTML5 figure element.
-		*/
+			* For rendering images inserted using the image plugin.
+			* Includes image captions using the HTML5 figure element.
+			*/
 	figure.image {
 		display: inline-block;
 		border: 1px solid gray;
@@ -30,9 +30,9 @@
 		text-align: center;
 	}
 	/*
-		 Alignment using classes rather than inline styles
-		 check out the "formats" option
-		*/
+			 Alignment using classes rather than inline styles
+			 check out the "formats" option
+			*/
 	img.align-left {
 		float: left;
 	}
@@ -86,7 +86,7 @@
 						<div class="col-2 pt-4">
 							<p>Ảnh cũ:</p>
 							<img src="@Model.Launch.ImageUrl"
-								 width="200px" height="200px" style="border-radius:5px; border:1px solid #bbb9b9" />
+								  style="border-radius:5px; border:1px solid #bbb9b9;width:200px;height:200px" />
 						</div>
 					}
 					<br /><br />
@@ -118,7 +118,6 @@
 	<script>
 		const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 		const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
-
 		tinymce.init({
 			selector: 'textarea#open-source-plugins-launch',
 			plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
@@ -151,12 +150,10 @@
 				if (meta.filetype === 'file') {
 					callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
 				}
-
 				/* Provide image and alt text for the image dialog */
 				if (meta.filetype === 'image') {
 					callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
 				}
-
 				/* Provide alternative source and posted for the media dialog */
 				if (meta.filetype === 'media') {
 					callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
@@ -181,7 +178,6 @@
 			content_css: useDarkMode ? 'dark' : 'default',
 			content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 		});
-
 		// Custom function to handle image uploads
 		function imageUploadHandler(blobInfo, success, failure) {
 			// Call the server-side API to save the image on the server
@@ -189,10 +185,8 @@
 			xhr = new XMLHttpRequest();
 			xhr.withCredentials = false;
 			xhr.open('POST', '/UploadImageLaunch'); // The URL where the image will be uploaded
-
 			// Set the response type to 'json'
 			xhr.responseType = 'json';
-
 			xhr.onload = function () {
 				if (xhr.status !== 200) {
 					failure('HTTP Error: ' + xhr.status);
@@ -207,12 +201,10 @@
 			xhr.onerror = function () {
 				failure('Network error occurred while trying to upload the image.');
 			};
-
 			formData = new FormData();
 			formData.append('file', blobInfo.blob(), blobInfo.filename());
 			xhr.send(formData);
 		}
-
 		function ValidateInput() {
 			if (document.getElementById("uploadBox").value == "") {
 				Swal.fire({

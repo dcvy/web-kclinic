@@ -51,9 +51,12 @@
                 <div class="container rounded p-2">
                     <div class="row">
                         <div class="col-8 col-lg-8">
+
+
                             <div class="row pl-2">
                             <p class="text-secondary">@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
                             </div>
+
                         </div>
                         <div class="col-12 col-lg-3 offset-lg-1 text-center">
                             <img src="@Model.Blog.ImageUrl" width="100%" class="rounded" />
@@ -81,15 +84,13 @@
 
                 <div class="col-md-12 col-sm-12">
                     <!-- NEWS THUMB -->
-                    <div class="news-detail-thumb">
+                    <div class="news-detail-thumb" >
                         <h2 style="font-size:30px;color:orangered">@Model.Title</h2>
-                        <p class="text-secondary" style="max-width:100%">@Html.Raw(InsertImageUrls(Model.Description))</p>
+                        <p class="text-secondary">@Html.Raw(InsertImageUrls(Model.Description))</p>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-
-
 </div>

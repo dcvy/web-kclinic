@@ -25,7 +25,8 @@ namespace Kclinic.DataAccess.Repository
             {
                 objFromDb.Title = obj.Title;
                 objFromDb.Content = obj.Content;
-                if (obj.ImageUrl != null)
+				objFromDb.Link = obj.Link;
+				if (obj.ImageUrl != null)
                 {
                     objFromDb.ImageUrl = obj.ImageUrl;
                 }

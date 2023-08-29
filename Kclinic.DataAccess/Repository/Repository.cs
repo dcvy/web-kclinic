@@ -16,9 +16,9 @@ namespace Kclinic.DataAccess.Repository
 
         public Repository(ApplicationDbContext db)
         {
-            _db= db;
+            _db = db;
             //_db.Blogs.Include(u => u.Category).Include(u=>u.CoverType);
-            this.dbSet= _db.Set<T>();
+            this.dbSet = _db.Set<T>();
         }
         public void Add(T entity)
         {
@@ -34,7 +34,7 @@ namespace Kclinic.DataAccess.Repository
             }
             if (includeProperties != null)
             {
-                foreach(var includeProp in includeProperties.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
                 }

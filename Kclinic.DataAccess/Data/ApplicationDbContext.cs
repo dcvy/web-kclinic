@@ -18,9 +18,11 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<ShoppingCart> ShoppingCarts { get; set; }
     public DbSet<Trial> Trials { get; set; }
-    public DbSet<About> Abouts { get; set; }
-    public DbSet<Launch> Launchs { get; set; }
-    public DbSet<OrderHeader> OrderHeaders { get; set; }
+	public DbSet<OrderHeader> OrderHeaders { get; set; }
 	public DbSet<OrderDetail> OrderDetail { get; set; }
-	
+    public DbSet<Launch> Launchs { get; set; }
+    public DbSet<About> Abouts { get; set; }
+    public DbSet<Function> Functions { get; set; }
+    public DbSet<Feature> Features { get; set; }
+    public DbSet<Partner> Partners { get; set; }
 }

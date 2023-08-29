@@ -74,8 +74,7 @@ public class BlogController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Upsert(BlogVM obj, IFormFile? file)
     {
-
-        if (ModelState.IsValid)
+		if (ModelState.IsValid)
         {
             string wwwRootPath = _hostEnvironment.WebRootPath;
             if (file != null)
