@@ -43,19 +43,16 @@
     new WOW({ mobile: false }).init();
 
 })(jQuery);
-$(document).ready(function () {
-    $(".contact-icon").each(function () {
-        var icon = $(this);
-        var iconPosition = icon.position().top;
+$('.owl-carousel').owlCarousel({
+    items: 1,
+    responsive: {
+        768: {
+            items: 2, 
+        },
+        992: {
+            items: 3, 
+        }
+        
+    },
 
-        $(window).scroll(function () {
-            var scrollPosition = $(this).scrollTop();
-
-            if (scrollPosition > iconPosition) {
-                icon.addClass("fixed-icon");
-            } else {
-                icon.removeClass("fixed-icon");
-            }
-        });
-    });
 });

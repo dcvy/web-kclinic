@@ -1,4 +1,4 @@
-﻿@model BlogCount
+﻿@model Kclinic.Models.ViewModels.BlogCountVM
 
 @using System.Text.RegularExpressions;
 @using System.IO;
@@ -85,8 +85,8 @@
                 <div class="col-md-8 col-sm-7">
                     <!-- NEWS THUMB -->
                     <div class="news-detail-thumb">
-                        <h2 style="font-size:30px;color:orangered">@Model.Blog.Title</h2>
-                        <p class="text-secondary" style="max-width">@Html.Raw(InsertImageUrls(Model.Blog.Description))</p>
+                        <h2 style="font-size:30px;color:orangered">@Model.BlogCount.Blog.Title</h2>
+                        <p class="text-secondary" style="max-width">@Html.Raw(InsertImageUrls(Model.BlogCount.Blog.Description))</p>
                         <div class="news-social-share">
                             <h4>Chia sẻ bài viết</h4>
                             <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
@@ -100,22 +100,25 @@
                     <div class="news-sidebar">
                         <div class="news-author">
                             <h4>Tác giả</h4>
-                            <p>@Model.Blog.Author</p>
+                            <p>@Model.BlogCount.Blog.Author</p>
                         </div>
 
                         <div class="news-categories">
-                            <span><h4>Danh mục: </h4><h5>@Model.Blog.Category.Name</h5></span>
+                            <span><h4>Danh mục: </h4><h5>@Model.BlogCount.Blog.Category.Name</h5></span>
                         </div>
 
                         <div class="news-tags">
                             <h4>Tags</h4>
                             <ul>
-                                <li><a href="#">Thai kì</a></li>
-                                <li><a href="#">Sức khỏe</a></li>
-                                <li><a href="#">Dược</a></li>
-                                <li><a href="#">Y tế</a></li>
-                                <li><a href="#">Bác sĩ</a></li>
-                                <li><a href="#">Xã hội</a></li>
+                                @foreach(var Type in Model.CoverTypes){
+                                    if (Type.Name.Equals(Model.BlogCount.Blog.CoverType.Name))
+                                    {
+                                        <li ><a class="specialtype" href="#">@Type.Name</a></li>
+                                    }else{
+                                        <li><a href="#">@Type.Name</a></li>
+                                    }
+                                   
+                                }
                             </ul>
                         </div>
                     </div>

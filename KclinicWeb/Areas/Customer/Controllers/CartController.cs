@@ -5,6 +5,7 @@ using Kclinic.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -44,7 +45,7 @@ namespace KclinicWeb.Areas.Customer.Controllers
 
 		public IActionResult Summary()
 		{
-			var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
 			var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
 			ShoppingCartVM = new ShoppingCartVM()
@@ -78,7 +79,7 @@ namespace KclinicWeb.Areas.Customer.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult SummaryPOST()
 		{
-			var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
 			var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
 			ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
@@ -164,7 +165,7 @@ namespace KclinicWeb.Areas.Customer.Controllers
 
 		public IActionResult OrderConfirmation(int id)
 		{
-			OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
+            OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
 			var service = new SessionService();
 			Session session = service.Get(orderHeader.SessionId);
 			//check the stripe status
@@ -187,7 +188,18 @@ namespace KclinicWeb.Areas.Customer.Controllers
 			var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
 			_unitOfWork.ShoppingCart.Remove(cart);
 			_unitOfWork.Save();
-			return RedirectToAction(nameof(Index));
+            IEnumerable<ShoppingCart> listCart = _unitOfWork.ShoppingCart.GetAll();
+            var num = 0;
+            foreach (var item in listCart)
+            {
+                num++;
+            }
+            Response.Cookies.Append("CartItemCount", num.ToString());
+            if (num == 0)
+            {
+                Response.Cookies.Delete("CartItemCount");
+            }
+            return RedirectToAction(nameof(Index));
 		}
 	}
 }

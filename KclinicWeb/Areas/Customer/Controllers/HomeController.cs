@@ -4,6 +4,7 @@ using Kclinic.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -31,8 +32,19 @@ public class HomeController : Controller
             Abouts = _unitOfWork.About.GetAll(),
             Functions = _unitOfWork.Function.GetAll(),
             Features = _unitOfWork.Feature.GetAll(),
-            Partners = _unitOfWork.Partner.GetAll()
+            Partners = _unitOfWork.Partner.GetAll(),
+            ShoppingCarts = _unitOfWork.ShoppingCart.GetAll(),
         };
+        var num = 0;
+        foreach(var item in viewModel.ShoppingCarts)
+        {
+            num++;
+        }
+        Response.Cookies.Append("CartItemCount", num.ToString());
+        if (num == 0)
+        {
+            Response.Cookies.Delete("CartItemCount");
+        }
         return View(viewModel);
 	}
 
@@ -51,11 +63,19 @@ public class HomeController : Controller
     {
         BlogCount blogObj = new()
         {
-            Count=1,
+            Count = 1,
             Blog = _unitOfWork.Blog.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,CoverType"),
         };
 
-        return View(blogObj);
+      
+
+        var viewModel = new BlogCountVM
+        {
+            BlogCount = blogObj,
+            CoverTypes = _unitOfWork.CoverType.GetAll(),
+    };
+
+        return View(viewModel);
     }
     public IActionResult DetailLaunch(int id)
     {
@@ -84,7 +104,18 @@ public class HomeController : Controller
 
         _unitOfWork.Save();
 
-        return RedirectToAction(nameof(Index));
+        IEnumerable<ShoppingCart> listCart = _unitOfWork.ShoppingCart.GetAll();
+        var num = 0;
+        foreach (var item in listCart)
+        {
+            num++;
+        }
+        Response.Cookies.Append("CartItemCount", num.ToString());
+        if (num == 0)
+        {
+            Response.Cookies.Delete("CartItemCount");
+        }
+        return RedirectToAction("Index","Cart");
     }
 
     public IActionResult Function(int id)

@@ -11,6 +11,7 @@ http://www.tooplate.com/view/2098-health
 body {
 background: #ffffff;
 font-family: 'Poppins', sans-serif;
+overflow-x: hidden;
 }
 
 
@@ -303,10 +304,11 @@ border-top-color: #ffffff;
 animation: spinner .9s linear infinite;
 }
 
-@-webkit-@keyframes spinner {
-to {transform: rotate(360deg);}
+@-webkit-keyframes spinner {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
-
 @keyframes spinner {
 to {transform: rotate(360deg);}
 }
@@ -609,15 +611,20 @@ height: 650px;
 
 .slider .item-first {
 background-image: url(../images/slider1.png);
-max-width: 100%;
-max-height:100%;
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center center;
+width: 100%;
+height: 100vh;
 }
 
 .slider .item-second {
 background-image: url('../images/sl2.png');
-max-width: 100%;
-max-height: 100%;
-
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center center;
+width: 100%;
+height: 100vh;
 }
 
 .slider .item-third {
@@ -629,7 +636,7 @@ background-image: url(../images/slider3.jpg);
     ABOUT              
 -----------------------------------------*/
 
-#about {
+ about {
 padding-bottom: 50px;
 }
 
@@ -1074,21 +1081,34 @@ color: #ffffff;
 /*---------------------------------------
     REGISTER              
 -----------------------------------------*/
-#registerSubmit.custom-button {
-    background: #a5c422;
-    color: #ffffff;
-    font-weight: 600;
-    height: 55px;
-    width: 100%;
+.custom-button {
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
     border: none;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align:center;
+    vertical-align:middle;
 }
 
-#registerSubmit.custom-button:hover {
-    background: #393939;
-    color: #ffffff;
+/* Primary button style */
+.custom-button.primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Success button style */
+.custom-button.success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Button hover effect */
+.custom-button:hover {
+    background-color: #555; /* Change the background color on hover */
 }
 
 /*---------------------------------------
@@ -1162,50 +1182,50 @@ line-height: 18px;
 }
 
 .opening-hours span {
-font-weight: 500;
-display: inline-block;
-padding-left: 10px;
+    font-weight: 500;
+    display: inline-block;
+    padding-left: 10px;
 }
 
 .copyright-text p,
 .footer-link a {
-color: #858585;
-font-size: 12px;
-font-weight: 500;
+    color: #858585;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .footer-link a {
-font-size: 12px;
-display: inline-block;
-padding: 0 10px;
-margin-top: 4px;
+    font-size: 12px;
+    display: inline-block;
+    padding: 0 10px;
+    margin-top: 4px;
 }
 
 .angle-up-btn {
-position: relative;
-bottom: 4em;
-display: block;
+    position: relative;
+    bottom: 4em;
+    display: block;
 }
 
 .angle-up-btn a {
-background: #4CAF50;
-border: 1px solid #f2f2f2;
-border-radius: 3px;
-font-size: 20px;
-color: #393939;
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 38px;
-transition: transform 0.1s ease-in;
-transform: translateX(0);
+    background: #4CAF50;
+    border: 1px solid #f2f2f2;
+    border-radius: 3px;
+    font-size: 20px;
+    color: #393939;
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    transition: transform 0.1s ease-in;
+    transform: translateX(0);
 }
 
 .angle-up-btn a:hover {
-background: #4267b2;
-color: #ffffff;
-transform: translateY(-5px);
+    background: #4267b2;
+    color: #ffffff;
+    transform: translateY(-5px);
 }
 
 
@@ -1214,32 +1234,32 @@ transform: translateY(-5px);
 -----------------------------------------*/
 
 .social-icon {
-position: relative;
-padding: 0;
-margin: 0;
+    position: relative;
+    padding: 0;
+    margin: 0;
 }
 
 .social-icon li {
-display: inline-block;
-list-style: none;
+    display: inline-block;
+    list-style: none;
 }
 
 .social-icon li a {
-border-radius: 100px;
-color: #464646;
-font-size: 15px;
-width: 35px;
-height: 35px;
-line-height: 35px;
-text-decoration: none;
-text-align: center;
-transition: all 0.4s ease-in-out;
-position: relative;
+    border-radius: 100px;
+    color: #464646;
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    position: relative;
 }
 
 .social-icon li a:hover {
-background: #4267b2;
-color: #ffffff;
+    background: #4267b2;
+    color: #ffffff;
 }
 
 /*---------------------------------------
@@ -1412,12 +1432,12 @@ a.d-block {
 }
 
 @keyframes lucidgenzalo {
-    0% to {
-        transform: rotate(-25deg)
+    0% {
+        transform: rotate(-25deg);
     }
 
     50% {
-        transform: rotate(25deg)
+        transform: rotate(25deg);
     }
 }
 
@@ -1450,23 +1470,23 @@ a.d-block {
     position: relative
 }
 
-    .fcta-zalo-nen-nut::after, .fcta-zalo-nen-nut::before {
-        content: "";
-        position: absolute;
-        border: 1px solid #0068ff;
-        background: #0068ff80;
-        z-index: -1;
-        left: -20px;
-        right: -20px;
-        top: -20px;
-        bottom: -20px;
-        border-radius: 50%;
-        animation: zoom 1.9s linear infinite
-    }
+.fcta-zalo-nen-nut::after, .fcta-zalo-nen-nut::before {
+    content: "";
+    position: absolute;
+    border: 1px solid #0068ff;
+    background: #0068ff80;
+    z-index: -1;
+    left: -20px;
+    right: -20px;
+    top: -20px;
+    bottom: -20px;
+    border-radius: 50%;
+    animation: zoom 1.9s linear infinite
+}
 
-    .fcta-zalo-nen-nut::after {
-        animation-delay: .4s
-    }
+.fcta-zalo-nen-nut::after {
+    animation-delay: .4s
+}
 
 .fcta-zalo-ben-trong-nut, .fcta-zalo-ben-trong-nut i {
     transition: all 1s
@@ -1484,9 +1504,9 @@ a.d-block {
     opacity: 1
 }
 
-    .fcta-zalo-ben-trong-nut i {
-        animation: lucidgenzalo 1s linear infinite
-    }
+.fcta-zalo-ben-trong-nut i {
+    animation: lucidgenzalo 1s linear infinite
+}
 
 .fcta-zalo-nen-nut:hover .fcta-zalo-ben-trong-nut, .fcta-zalo-text {
     opacity: 0
@@ -1542,4 +1562,29 @@ span#fcta-zalo-tracking {
 
 .fcta-zalo-text {
     font-family: Roboto
+}
+/*---------------------------------------
+   content        
+-----------------------------------------*/
+.news-detail-thumb img {
+    max-width: 100%;
+    height: auto;
+}
+.item {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    padding: 20px; 
+}
+/*-----
+    cart
+    ----*/
+.cart-item-count {
+    font-size: 0.8em;
+    margin-left: -5px;
+    vertical-align: text-bottom;
+    margin-left: 5px;
+    color: red;
+}
+.specialtype{
+    background:green !important;
 }
