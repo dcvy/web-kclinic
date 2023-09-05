@@ -17,5 +17,5 @@
 <p>Tài khoản admin để đăng nhập: Admin@gmail.com</p>
 <p>Mật khẩu: Admin123* </p>
 <br/>
-<p>Sửa các thông tin tài khoản gmail,strip trong appsettings.json</p>
+<p>Sửa các thông tin tài khoản gmail,stripe trong appsettings.json</p>
 
